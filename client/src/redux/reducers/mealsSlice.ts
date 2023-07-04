@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+//import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface MealDay {
   weekday: string;
@@ -74,6 +74,6 @@ export const mealsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {} = mealsSlice.actions;
+//export const {} = mealsSlice.actions;
 
 export default mealsSlice.reducer;

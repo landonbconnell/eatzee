@@ -1,19 +1,19 @@
 import React from "react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 const Header = () => {
   return (
     <Stack direction="column" justifyContent="center" alignItems="center">
-      <h1>Eatzier</h1>
+      <Typography variant="h4">Eatzier</Typography>
       <Stack
         direction="row"
         justifyContent="space-evenly"
         alignItems="center"
         spacing={5}
       >
-        <h3>Breakfast</h3>
-        <h3>Lunch</h3>
-        <h3>Dinner</h3>
+        <Typography variant="h6">Breakfast</Typography>
+        <Typography variant="h6">Lunch</Typography>
+        <Typography variant="h6">Dinner</Typography>
       </Stack>
     </Stack>
   );
