@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import type { PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface MealDay {
   weekday: string;
 }
 
+export enum Meals {
+  Breakfast,
+  Lunch,
+  Dinner,
+}
+
 export interface MealsState {
+  currentMeal: Meals;
   meals: {
     breakfast: {
       days: MealDay[];
@@ -44,6 +51,7 @@ const defaultWeekdays: MealDay[] = [
 ];
 
 const initialState: MealsState = {
+  currentMeal: Meals.Breakfast,
   meals: {
     breakfast: {
       days: defaultWeekdays,
@@ -61,6 +69,9 @@ export const mealsSlice = createSlice({
   name: "meals",
   initialState,
   reducers: {
+    changeMeal: (state, action: PayloadAction<Meals>) => {
+      state.currentMeal = action.payload;
+    },
     // increment: (state) => {
     //   state.value += 1;
     // },
@@ -74,6 +85,7 @@ export const mealsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-//export const {} = mealsSlice.actions;
+
+export const { changeMeal } = mealsSlice.actions;
 
 export default mealsSlice.reducer;

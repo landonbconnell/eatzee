@@ -34,7 +34,8 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: "primary.light" }}>
+      {/* Colors the app's background */}
+      <Box sx={{ width: "100vw", height: "100vh", bgcolor: "primary.light" }}>
         <HomePage />
       </Box>
     </ThemeProvider>
