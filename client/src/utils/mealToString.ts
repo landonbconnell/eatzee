@@ -2,11 +2,11 @@ import { Meals } from "redux/reducers/mealsSlice";
 
 export const mealToString = (meal: Meals) => {
   switch (meal) {
-    case Meals.Breakfast:
+    case Meals.breakfast:
       return "Breakfast";
-    case Meals.Lunch:
+    case Meals.lunch:
       return "Lunch";
-    case Meals.Dinner:
+    case Meals.dinner:
       return "Dinner";
     default:
       return "";

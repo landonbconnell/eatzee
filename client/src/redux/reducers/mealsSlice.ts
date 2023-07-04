@@ -6,9 +6,9 @@ export interface MealDay {
 }
 
 export enum Meals {
-  Breakfast,
-  Lunch,
-  Dinner,
+  breakfast,
+  lunch,
+  dinner,
 }
 
 export interface MealsState {
@@ -51,7 +51,7 @@ const defaultWeekdays: MealDay[] = [
 ];
 
 const initialState: MealsState = {
-  currentMeal: Meals.Breakfast,
+  currentMeal: Meals.breakfast,
   meals: {
     breakfast: {
       days: defaultWeekdays,
