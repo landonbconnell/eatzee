@@ -1,12 +1,15 @@
 import React from "react";
 import HomePage from "./components/HomePage";
 import { ThemeProvider } from "@emotion/react";
-import { createTheme } from "@mui/material";
+import { Box, createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#ff4400",
+      light: "#f5f5f5",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#303030",
     },
     secondary: {
       main: "#f44336",
@@ -31,7 +34,9 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <HomePage />
+      <Box sx={{ bgcolor: "primary.light" }}>
+        <HomePage />
+      </Box>
     </ThemeProvider>
   );
 };
