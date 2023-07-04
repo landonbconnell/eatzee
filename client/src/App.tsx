@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import { ThemeProvider } from "@emotion/react";
 import { Box, createTheme } from "@mui/material";
 
