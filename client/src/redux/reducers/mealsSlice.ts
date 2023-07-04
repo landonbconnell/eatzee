@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface MealDay {
+export interface Day {
   weekday: string;
 }
 
@@ -15,18 +15,18 @@ export interface MealsState {
   currentMeal: Meals;
   meals: {
     breakfast: {
-      days: MealDay[];
+      days: Day[];
     };
     lunch: {
-      days: MealDay[];
+      days: Day[];
     };
     dinner: {
-      days: MealDay[];
+      days: Day[];
     };
   };
 }
 
-const defaultWeekdays: MealDay[] = [
+const defaultWeekdays: Day[] = [
   {
     weekday: "Monday",
   },
