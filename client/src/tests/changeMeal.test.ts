@@ -12,30 +12,24 @@ describe('update variables reducer', () => {
   it('changes meal to lunch', () => {
     expect(store.getState().meals).toEqual(initialState);
 
-    // dispatch the updateVariable action
     store.dispatch(changeMeal(Meals.lunch));
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(store.getState().meals.currentMeal).toEqual(Meals.lunch);
   });
 
   it('changes meal to dinner', () => {
     expect(store.getState().meals).toEqual(initialState);
 
-    // dispatch the updateVariable action
     store.dispatch(changeMeal(Meals.dinner));
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(store.getState().meals.currentMeal).toEqual(Meals.dinner);
   });
 
   it('current meal stays the same when meal is changed to breakfast', () => {
     expect(store.getState().meals).toEqual(initialState);
 
-    // dispatch the updateVariable action
     store.dispatch(changeMeal(Meals.breakfast));
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(store.getState().meals.currentMeal).toEqual(Meals.breakfast);
   });
 });
