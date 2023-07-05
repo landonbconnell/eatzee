@@ -1,6 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import * as React from 'react';
-import { Day } from 'redux/reducers/mealsSlice';
+import { Day, Variables } from 'redux/reducers/mealsSlice';
+import { weekdayToString } from 'utils/weekdayToString';
+import VariableStepper from './VariableStepper';
 
 interface MealDayEditProps {
   day: Day;
@@ -13,18 +15,26 @@ const MealDayEdit = ({ day }: MealDayEditProps) => {
         variant='h6'
         sx={{ color: 'primary.contrastText', marginTop: '1rem' }}
       >
-        {day.weekday}
+        {weekdayToString(day.weekday)}
       </Typography>
       <Box
         sx={{
-          width: '14rem',
-          height: '15.75rem',
-          borderRadius: '1.75rem',
+          minWidth: '20rem',
+          minHeight: '22.5rem',
+          maxWidth: '20rem',
+          maxHeight: '22.5rem',
+          borderRadius: '2.5rem',
           border: '1px solid',
-          margin: '0rem 1.75rem 1.75rem 1.75rem',
+          margin: '0rem 2.5rem 2.5rem 2.5rem',
           backgroundColor: 'primary.light',
         }}
-      />
+      >
+        <VariableStepper
+          weekday={day.weekday}
+          variable={Variables.budget}
+          labels={['$', '$$', '$$$']}
+        />
+      </Box>
     </Stack>
   );
 };

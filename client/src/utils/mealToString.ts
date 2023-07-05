@@ -1,14 +1,27 @@
-import { Meals } from "redux/reducers/mealsSlice";
+import { Meals } from 'redux/reducers/mealsSlice';
 
 export const mealToString = (meal: Meals) => {
   switch (meal) {
     case Meals.breakfast:
-      return "Breakfast";
+      return 'Breakfast';
     case Meals.lunch:
-      return "Lunch";
+      return 'Lunch';
     case Meals.dinner:
-      return "Dinner";
+      return 'Dinner';
     default:
-      return "";
+      return '';
+  }
+};
+
+export const mealToPropString = (meal: Meals) => {
+  switch (meal) {
+    case Meals.breakfast:
+      return 'breakfast';
+    case Meals.lunch:
+      return 'lunch';
+    case Meals.dinner:
+      return 'dinner';
+    default:
+      return '';
   }
 };

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Day } from 'redux/reducers/mealsSlice';
 import { Box, Stack, Typography } from '@mui/material';
+import { weekdayToString } from 'utils/weekdayToString';
 
 interface MealDayViewProps {
   day: Day;
@@ -13,27 +14,27 @@ const MealDayView = ({ day }: MealDayViewProps) => {
         variant='h6'
         sx={{ color: 'primary.contrastText', marginTop: '1rem' }}
       >
-        {day.weekday}
+        {weekdayToString(day.weekday)}
       </Typography>
       <Box
         sx={{
-          width: '14rem',
-          height: '10.5rem',
-          borderTopLeftRadius: '1.75rem',
-          borderTopRightRadius: '1.75rem',
+          maxWidth: '20rem',
+          maxHeight: '15rem',
+          borderTopLeftRadius: '2.5rem',
+          borderTopRightRadius: '2.5rem',
           border: '1px solid',
-          margin: '0rem 1.75rem 0 1.75rem',
+          margin: '0rem 2.5rem 0 2.5rem',
           backgroundColor: 'primary.light',
         }}
       />
       <Box
         sx={{
-          width: '14rem',
-          height: '5.25rem',
-          borderBottomLeftRadius: '1.75rem',
-          borderBottomRightRadius: '1.75rem',
+          maxWidth: '20rem',
+          maxHeight: '7.5rem',
+          borderBottomLeftRadius: '2.5rem',
+          borderBottomRightRadius: '2.5rem',
           border: '1px solid',
-          margin: '0rem 1.75rem 1.75rem 1.75rem',
+          margin: '0rem 2.5rem 2.5rem 2.5rem',
           backgroundColor: 'primary.light',
         }}
       />
