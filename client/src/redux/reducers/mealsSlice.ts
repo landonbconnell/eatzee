@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface Day {
   weekday: string;
+  edit: boolean;
 }
 
 export enum Meals {
@@ -28,25 +29,32 @@ export interface MealsState {
 
 const defaultWeekdays: Day[] = [
   {
-    weekday: "Monday",
+    weekday: 'Monday',
+    edit: true,
   },
   {
-    weekday: "Tuesday",
+    weekday: 'Tuesday',
+    edit: true,
   },
   {
-    weekday: "Wednesday",
+    weekday: 'Wednesday',
+    edit: true,
   },
   {
-    weekday: "Thursday",
+    weekday: 'Thursday',
+    edit: false,
   },
   {
-    weekday: "Friday",
+    weekday: 'Friday',
+    edit: false,
   },
   {
-    weekday: "Saturday",
+    weekday: 'Saturday',
+    edit: false,
   },
   {
-    weekday: "Sunday",
+    weekday: 'Sunday',
+    edit: false,
   },
 ];
 
@@ -66,7 +74,7 @@ const initialState: MealsState = {
 };
 
 export const mealsSlice = createSlice({
-  name: "meals",
+  name: 'meals',
   initialState,
   reducers: {
     changeMeal: (state, action: PayloadAction<Meals>) => {
