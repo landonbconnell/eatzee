@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import MealTab from './MealTab';
-import { Meals } from 'redux/reducers/mealsSlice';
+import { Meals } from 'models/meals/enums/Meals';
 
 const Header = () => {
   return (

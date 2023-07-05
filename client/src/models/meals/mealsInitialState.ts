@@ -1,4 +1,7 @@
-import { Weekdays, Meals, MealsState, Day } from 'redux/reducers/mealsSlice';
+import { MealsState } from 'redux/reducers/mealsSlice';
+import { Weekdays } from './enums/Weekdays';
+import { Day } from './interfaces/Day';
+import { Meals } from './enums/Meals';
 
 export const initialDays: Day[] = [
   {
@@ -59,7 +62,7 @@ export const initialDays: Day[] = [
   },
 ];
 
-export const initialState: MealsState = {
+export const mealsInitialState: MealsState = {
   currentMeal: Meals.breakfast,
   meals: {
     breakfast: {

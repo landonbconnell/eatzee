@@ -1,8 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material';
 import * as React from 'react';
-import { Day, Variables } from 'redux/reducers/mealsSlice';
+import { Day } from 'models/meals/interfaces/Day';
 import { weekdayToString } from 'utils/weekdayToString';
 import VariableStepper from './VariableStepper';
+import { Variables } from 'models/meals/enums/Variables';
 
 interface MealDayEditProps {
   day: Day;

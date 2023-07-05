@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Day } from 'redux/reducers/mealsSlice';
+import { Day } from 'models/meals/interfaces/Day';
 import { Box, Stack, Typography } from '@mui/material';
 import { weekdayToString } from 'utils/weekdayToString';
 

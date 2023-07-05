@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import mealsReducer, {
   updateVariable,
-  Weekdays,
-  Variables,
   changeMeal,
-  Meals,
 } from 'redux/reducers/mealsSlice';
-import { initialState } from './models/initialState';
+import { mealsInitialState } from '../models/meals/mealsInitialState';
+import { Weekdays } from '../models/meals/enums/Weekdays';
+import { Variables } from '../models/meals/enums/Variables';
+import { Meals } from 'models/meals/enums/Meals';
 
 describe('update variables reducer', () => {
   let store;
@@ -16,9 +16,8 @@ describe('update variables reducer', () => {
   });
 
   it('updates monday time', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Monday,
@@ -27,16 +26,14 @@ describe('update variables reducer', () => {
       })
     );
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(
       store.getState().meals.meals.breakfast.days[Weekdays.Monday].time
     ).toEqual(3);
   });
 
   it('updates tuesday budget', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Tuesday,
@@ -45,16 +42,14 @@ describe('update variables reducer', () => {
       })
     );
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(
       store.getState().meals.meals.breakfast.days[Weekdays.Tuesday].budget
     ).toEqual(1);
   });
 
   it('updates wednesday food_mood', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Wednesday,
@@ -63,16 +58,14 @@ describe('update variables reducer', () => {
       })
     );
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(
       store.getState().meals.meals.breakfast.days[Weekdays.Wednesday].food_mood
     ).toEqual(4);
   });
 
   it('updates thursday skill_level', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Thursday,
@@ -81,18 +74,16 @@ describe('update variables reducer', () => {
       })
     );
 
-    // now the time value for Monday breakfast should be updated to 3
     expect(
       store.getState().meals.meals.breakfast.days[Weekdays.Thursday].skill_level
     ).toEqual(0);
   });
 
   it("updates friday's lunch time", () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
     store.dispatch(changeMeal(Meals.lunch));
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Friday,
@@ -107,11 +98,10 @@ describe('update variables reducer', () => {
   });
 
   it("updates saturday's dinner budget", () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
     store.dispatch(changeMeal(Meals.dinner));
 
-    // dispatch the updateVariable action
     store.dispatch(
       updateVariable({
         weekday: Weekdays.Saturday,

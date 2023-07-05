@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import mealsReducer, { changeMeal, Meals } from 'redux/reducers/mealsSlice';
-import { initialState } from './models/initialState';
+import mealsReducer, { changeMeal } from 'redux/reducers/mealsSlice';
+import { Meals } from 'models/meals/enums/Meals';
+import { mealsInitialState } from 'models/meals/mealsInitialState';
 
 describe('update variables reducer', () => {
   let store;
@@ -10,7 +11,7 @@ describe('update variables reducer', () => {
   });
 
   it('changes meal to lunch', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
     store.dispatch(changeMeal(Meals.lunch));
 
@@ -18,7 +19,7 @@ describe('update variables reducer', () => {
   });
 
   it('changes meal to dinner', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
     store.dispatch(changeMeal(Meals.dinner));
 
@@ -26,7 +27,7 @@ describe('update variables reducer', () => {
   });
 
   it('current meal stays the same when meal is changed to breakfast', () => {
-    expect(store.getState().meals).toEqual(initialState);
+    expect(store.getState().meals).toEqual(mealsInitialState);
 
     store.dispatch(changeMeal(Meals.breakfast));
 

@@ -1,4 +1,4 @@
-import { Variables } from 'redux/reducers/mealsSlice';
+import { Variables } from 'models/meals/enums/Variables';
 
 export const variableToString = (variable: Variables) => {
   switch (variable) {

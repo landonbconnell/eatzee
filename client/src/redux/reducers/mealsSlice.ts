@@ -2,38 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { mealToPropString } from 'utils/mealToString';
 import { variableToPropString } from 'utils/variableToString';
-
-export enum Weekdays {
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-  Saturday,
-  Sunday,
-}
-
-export enum Variables {
-  time,
-  budget,
-  food_mood,
-  skill_level,
-}
-
-export interface Day {
-  weekday: Weekdays;
-  edit: boolean;
-  time: number;
-  budget: number;
-  food_mood: number;
-  skill_level: number;
-}
-
-export enum Meals {
-  breakfast,
-  lunch,
-  dinner,
-}
+import { Weekdays } from 'models/meals/enums/Weekdays';
+import { Variables } from 'models/meals/enums/Variables';
+import { Meals } from 'models/meals/enums/Meals';
+import { Day } from 'models/meals/interfaces/Day';
+import { mealsInitialState as initialState } from 'models/meals/mealsInitialState';
 
 export interface MealsState {
   currentMeal: Meals;
@@ -49,80 +22,6 @@ export interface MealsState {
     };
   };
 }
-
-const defaultWeekdays: Day[] = [
-  {
-    weekday: Weekdays.Monday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Tuesday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Wednesday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Thursday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Friday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Saturday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-  {
-    weekday: Weekdays.Sunday,
-    edit: true,
-    time: 2,
-    budget: 2,
-    food_mood: 2,
-    skill_level: 2,
-  },
-];
-
-const initialState: MealsState = {
-  currentMeal: Meals.breakfast,
-  meals: {
-    breakfast: {
-      days: defaultWeekdays,
-    },
-    lunch: {
-      days: defaultWeekdays,
-    },
-    dinner: {
-      days: defaultWeekdays,
-    },
-  },
-};
 
 export const mealsSlice = createSlice({
   name: 'meals',

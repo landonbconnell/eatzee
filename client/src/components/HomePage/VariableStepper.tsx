@@ -1,9 +1,11 @@
 import React from 'react';
 import { Stepper, Step, StepLabel, Stack } from '@mui/material';
-import { Variables, Weekdays, updateVariable } from 'redux/reducers/mealsSlice';
+import { updateVariable } from 'redux/reducers/mealsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { daysSelector } from 'redux/selectors/daysSelector';
 import { variableToPropString } from 'utils/variableToString';
+import { Weekdays } from 'models/meals/enums/Weekdays';
+import { Variables } from 'models/meals/enums/Variables';
 
 interface VariableStepperProps {
   weekday: Weekdays;

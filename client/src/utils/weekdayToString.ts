@@ -1,4 +1,4 @@
-import { Weekdays } from 'redux/reducers/mealsSlice';
+import { Weekdays } from 'models/meals/enums/Weekdays';
 
 export const weekdayToString = (weekday: Weekdays) => {
   switch (weekday) {

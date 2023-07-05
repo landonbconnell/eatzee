@@ -1,4 +1,4 @@
-import { Meals } from 'redux/reducers/mealsSlice';
+import { Meals } from '../models/meals/enums/Meals';
 
 export const mealToString = (meal: Meals) => {
   switch (meal) {
