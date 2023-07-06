@@ -10,7 +10,7 @@ import { daysSelector } from 'redux/selectors/daysSelector';
 const MealWeek = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md')); // 'md' stands for medium screens
-  const daysPerRow = matches ? 2 : 1; // display 3 meal days per line on large screens, 1 on small screens
+  const daysPerRow = matches ? 4 : 1; // display 3 meal days per line on large screens, 1 on small screens
 
   const days = useSelector(daysSelector);
 
