@@ -49,7 +49,12 @@ const VariableStepper = ({
       <Typography sx={{ padding: '1rem 0 1rem 0' }}>
         {variableToString(variable)}
       </Typography>
-      <Stepper nonLinear activeStep={activeStep} alternativeLabel>
+      <Stepper
+        nonLinear
+        activeStep={activeStep}
+        alternativeLabel
+        sx={{ '.MuiStepConnector-line': { display: 'none' } }}
+      >
         {labels.map((label, index) => {
           const StepIconWithProps = (props) => (
             <CustomStepIcon active={activeStep === index} {...props} />
@@ -62,7 +67,9 @@ const VariableStepper = ({
                   dispatch(updateVariable({ weekday, variable, value: index }))
                 }
               >
-                {label}
+                <Typography variant='body2' sx={{ fontSize: '12px' }}>
+                  {label}
+                </Typography>
               </StepLabel>
             </Step>
           );

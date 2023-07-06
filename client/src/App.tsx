@@ -20,6 +20,8 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      'Nunito',
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',

@@ -5,6 +5,24 @@ import { weekdayToString } from 'utils/weekdayToString';
 import VariableStepper from './VariableStepper';
 import { Variables } from 'models/meals/enums/Variables';
 
+const dayTypographyStyles = {
+  color: 'primary.contrastText',
+  marginTop: '1rem',
+};
+
+const mealDayEditBoxStyles = {
+  minWidth: '20rem',
+  maxWidth: '20rem',
+  minHeight: '22.5rem',
+  maxHeight: '22.5rem',
+  overflowY: 'auto',
+  borderTopLeftRadius: '2.5rem',
+  borderBottomLeftRadius: '2.5rem',
+  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
+  margin: '0rem 2.5rem 2.5rem 2.5rem',
+  backgroundColor: 'primary.light',
+};
+
 interface MealDayEditProps {
   day: Day;
 }
@@ -12,39 +30,24 @@ interface MealDayEditProps {
 const MealDayEdit = ({ day }: MealDayEditProps) => {
   return (
     <Stack direction='column' alignItems='center' justifyContent='center'>
-      <Typography
-        variant='h6'
-        sx={{ color: 'primary.contrastText', marginTop: '1rem' }}
-      >
+      <Typography variant='h6' sx={dayTypographyStyles}>
         {weekdayToString(day.weekday)}
       </Typography>
-      <Box
-        sx={{
-          minWidth: '20rem',
-          minHeight: '22.5rem',
-          maxWidth: '20rem',
-          maxHeight: '22.5rem',
-          borderRadius: '2.5rem',
-          border: '1px solid',
-          margin: '0rem 2.5rem 2.5rem 2.5rem',
-          backgroundColor: 'primary.light',
-        }}
-      >
+      <Box sx={mealDayEditBoxStyles}>
         <VariableStepper
           weekday={day.weekday}
           variable={Variables.time}
-          labels={[
-            "I'm hungry now",
-            '',
-            'I have some time',
-            '',
-            'I have all day',
-          ]}
+          labels={['', '', '', '', '']}
         />
         <VariableStepper
           weekday={day.weekday}
           variable={Variables.budget}
           labels={['$', '', '$$', '', '$$$']}
+        />
+        <VariableStepper
+          weekday={day.weekday}
+          variable={Variables.food_mood}
+          labels={['', '', '', '', '']}
         />
       </Box>
     </Stack>
