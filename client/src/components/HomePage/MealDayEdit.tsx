@@ -32,8 +32,19 @@ const MealDayEdit = ({ day }: MealDayEditProps) => {
       >
         <VariableStepper
           weekday={day.weekday}
+          variable={Variables.time}
+          labels={[
+            "I'm hungry now",
+            '',
+            'I have some time',
+            '',
+            'I have all day',
+          ]}
+        />
+        <VariableStepper
+          weekday={day.weekday}
           variable={Variables.budget}
-          labels={['$', '$$', '$$$']}
+          labels={['$', '', '$$', '', '$$$']}
         />
       </Box>
     </Stack>

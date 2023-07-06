@@ -23,7 +23,7 @@ const MealTab = ({ meal }: MealTabProps) => {
         cursor: 'pointer', // Changes the cursor to a hand on hover
         textDecoration: meal === currentMeal ? 'underline' : 'none', // Underline if this meal is the selected one
         '&:hover': {
-          color: 'secondary.main', // Changes the text color on hover
+          color: 'secondary.dark', // Changes the text color on hover
         },
       }}
     >

@@ -1,17 +1,39 @@
 import React from 'react';
-import { Stepper, Step, StepLabel, Stack } from '@mui/material';
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  Stack,
+  StepIcon,
+  Typography,
+} from '@mui/material';
 import { updateVariable } from 'redux/reducers/mealsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { daysSelector } from 'redux/selectors/daysSelector';
-import { variableToPropString } from 'utils/variableToString';
+import { variableToPropString, variableToString } from 'utils/variableToString';
 import { Weekdays } from 'models/meals/enums/Weekdays';
 import { Variables } from 'models/meals/enums/Variables';
+
+/* local helper component */
+const CustomStepIcon = ({ active, ...props }) => {
+  return (
+    <StepIcon
+      {...props}
+      icon={''}
+      sx={{
+        color: active ? 'secondary.dark' : 'primary.main',
+      }}
+    />
+  );
+};
 
 interface VariableStepperProps {
   weekday: Weekdays;
   variable: Variables;
   labels: string[];
 }
+
+/* main component */
 
 const VariableStepper = ({
   weekday,
@@ -24,19 +46,27 @@ const VariableStepper = ({
 
   return (
     <Stack direction='column' justifyContent='center' alignItems='center'>
+      <Typography sx={{ padding: '1rem 0 1rem 0' }}>
+        {variableToString(variable)}
+      </Typography>
       <Stepper nonLinear activeStep={activeStep} alternativeLabel>
-        {labels.map((label, index) => (
-          <Step key={label}>
-            <StepLabel
-              icon=''
-              onClick={() =>
-                dispatch(updateVariable({ weekday, variable, value: index }))
-              }
-            >
-              {label}
-            </StepLabel>
-          </Step>
-        ))}
+        {labels.map((label, index) => {
+          const StepIconWithProps = (props) => (
+            <CustomStepIcon active={activeStep === index} {...props} />
+          );
+          return (
+            <Step key={index}>
+              <StepLabel
+                StepIconComponent={StepIconWithProps}
+                onClick={() =>
+                  dispatch(updateVariable({ weekday, variable, value: index }))
+                }
+              >
+                {label}
+              </StepLabel>
+            </Step>
+          );
+        })}
       </Stepper>
     </Stack>
   );
