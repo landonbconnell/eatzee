@@ -2,6 +2,7 @@
 const express = require('express');
 const dbConnect = require('./config/db');
 const cors = require('cors');
+const apiRoutes = require('./routes/apiRoutes');
 require('dotenv').config();
 
 // Create a new express application
@@ -24,3 +25,5 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use('/api', apiRoutes);
