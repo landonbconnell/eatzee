@@ -1,5 +1,6 @@
 const User = require('../models/userSchema');
 const bcrypt = require('bcryptjs');
+const generateAccessToken = require('../utils/generateAccessToken');
 
 const login = async (req, res) => {
   User.findOne({ username: req.body.username })
@@ -12,7 +13,10 @@ const login = async (req, res) => {
           user.password,
           function (err, result) {
             if (result) {
-              return res.status(200).json({ msg: 'Login successful' });
+              const accessToken = generateAccessToken(user.username);
+              return res
+                .status(200)
+                .json({ msg: 'Login successful', accessToken });
             } else {
               return res
                 .status(401)
