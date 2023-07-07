@@ -8,6 +8,7 @@ import { Variables } from 'models/meals/enums/Variables';
 const dayTypographyStyles = {
   color: 'primary.contrastText',
   marginTop: '1rem',
+  paddingBottom: '0.5rem',
 };
 
 const mealDayEditBoxStyles = {
