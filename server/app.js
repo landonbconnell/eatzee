@@ -1,9 +1,13 @@
 // Require the express module
-const express = require("express");
-require("dotenv").config();
+const express = require('express');
+const dbConnect = require('./config/db');
+const cors = require('cors');
+require('dotenv').config();
 
 // Create a new express application
 const app = express();
+
+dbConnect().catch((err) => console.log(err));
 
 // The port that the server will listen on
 const port = 5000;
@@ -15,7 +19,7 @@ app.listen(port, () => {
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: 'http://localhost:3000',
   })
 );
 
