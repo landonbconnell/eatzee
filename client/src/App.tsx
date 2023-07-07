@@ -1,8 +1,10 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import './styles/App.css';
+import LogInPage from 'components/LogInPage/LogInPage';
 
 const theme = createTheme({
   palette: {
@@ -39,7 +41,10 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <HomePage />
+      <Routes>
+        <Route path='/' element={<LogInPage />} />
+        <Route path='/home' element={<HomePage />} />
+      </Routes>
     </ThemeProvider>
   );
 };
