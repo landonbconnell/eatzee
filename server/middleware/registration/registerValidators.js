@@ -1,4 +1,4 @@
-const User = require('../models/userSchema'); // import your User model
+const User = require('../../models/userSchema'); // import your User model
 
 const { body } = require('express-validator');
 
