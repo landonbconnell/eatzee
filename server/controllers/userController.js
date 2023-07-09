@@ -5,8 +5,10 @@ const generateAccessToken = require('../utils/generateAccessToken');
 const login = async (req, res) => {
   User.findOne({ username: req.body.username })
     .then((user) => {
-      if (!user) {
-        return res.status(404).json({ errors: [{ msg: 'User not found' }] });
+      if (user) {
+        return res
+          .status(404)
+          .json({ errors: [{ field: 'username', msg: 'User not found' }] });
       } else {
         bcrypt.compare(
           req.body.password,
@@ -18,9 +20,9 @@ const login = async (req, res) => {
                 .status(200)
                 .json({ msg: 'Login successful', accessToken });
             } else {
-              return res
-                .status(401)
-                .json({ errors: [{ msg: 'Incorrect password' }] });
+              return res.status(401).json({
+                errors: [{ field: 'password', msg: 'Incorrect password' }],
+              });
             }
           }
         );
