@@ -8,7 +8,7 @@ const LogInBoxStyles = {
   minWidth: '20rem',
   maxWidth: '30rem',
   minHeight: '22.5rem',
-  maxHeight: '32rem',
+  maxHeight: '40rem',
   padding: '2rem',
   overflow: 'hidden',
   borderRadius: '2.5rem',
@@ -69,13 +69,12 @@ const SignUp = () => {
             });
           });
       }
-    } else {
-      if (email === '') setEmailErrors(['Email is required']);
-      if (username === '') setUsernameErrors(['Username is required']);
-      if (password === '') setPasswordErrors(['Password is required']);
-      if (confirmPassword === '')
-        setConfirmErrors(['Confirm password is required']);
     }
+    if (email === '') setEmailErrors(['Email is required']);
+    if (username === '') setUsernameErrors(['Username is required']);
+    if (password === '') setPasswordErrors(['Password is required']);
+    if (confirmPassword === '')
+      setConfirmErrors(['Confirm password is required']);
   };
 
   return (
