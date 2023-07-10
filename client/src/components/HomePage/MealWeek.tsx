@@ -3,12 +3,10 @@ import MealDayView from './MealDayView';
 import MealDayEdit from './MealDayEdit';
 import { useSelector } from 'react-redux';
 import { Stack } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { daysSelector } from 'redux/selectors/daysSelector';
 
 const MealWeek = () => {
-  const theme = useTheme();
   const isMobile = useMediaQuery('(max-width: 829px)');
   const isSmall = useMediaQuery('(min-width: 830px) and (max-width: 1249px)');
   const isMedium = useMediaQuery('(min-width: 1250px) and (max-width: 1629px)');

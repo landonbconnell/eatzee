@@ -10,6 +10,7 @@ const LogInPage = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
+        backgroundColor: 'secondary.light',
       }}
     >
       <SignUp />

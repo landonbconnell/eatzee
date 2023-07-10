@@ -3,7 +3,6 @@ import Header from './Header';
 import { Stack } from '@mui/material';
 import MealWeek from './MealWeek';
 
-// generated using sfc (stateless function component)
 const HomePage = () => {
   return (
     <Stack direction='column'>
