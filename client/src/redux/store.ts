@@ -1,8 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import mealsReducer from "./reducers/mealsSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import mealsReducer from './reducers/mealsSlice';
+import authReducer from './reducers/authSlice';
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     meals: mealsReducer,
   },
 });

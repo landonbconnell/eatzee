@@ -5,7 +5,7 @@ const generateAccessToken = require('../utils/generateAccessToken');
 const login = async (req, res) => {
   User.findOne({ username: req.body.username })
     .then((user) => {
-      if (user) {
+      if (!user) {
         return res
           .status(404)
           .json({ errors: [{ field: 'username', msg: 'User not found' }] });
