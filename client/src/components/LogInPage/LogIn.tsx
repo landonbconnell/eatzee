@@ -41,6 +41,7 @@ const LogIn = () => {
           navigate('/home');
         })
         .catch((err) => {
+          console.log(err);
           if (err.response.status === 404) {
             // User not found
             setUsername('');
@@ -75,6 +76,7 @@ const LogIn = () => {
         <TextField
           label='Username'
           value={username}
+          type='text'
           variant='outlined'
           helperText={usernameError}
           error={usernameError ? true : false}
@@ -113,7 +115,7 @@ const LogIn = () => {
 
         <Typography variant='body2' sx={{ marginTop: '2rem' }}>
           {"Don't have an account? "}
-          <Link to='/register'>
+          <Link to='/signup'>
             <Box component='span' sx={{ color: 'secondary.dark' }}>
               Sign Up
             </Box>

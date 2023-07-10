@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import './styles/App.css';
 import LogInPage from 'components/LogInPage/LogInPage';
+import SignUpPage from 'components/SignUpPage/SignUpPage';
 
 const theme = createTheme({
   palette: {
@@ -43,6 +44,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path='/' element={<LogInPage />} />
+        <Route path='/signup' element={<SignUpPage />} />
         <Route path='/home' element={<HomePage />} />
       </Routes>
     </ThemeProvider>
