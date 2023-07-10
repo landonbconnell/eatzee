@@ -9,8 +9,22 @@ import { daysSelector } from 'redux/selectors/daysSelector';
 
 const MealWeek = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md')); // 'md' stands for medium screens
-  const daysPerRow = matches ? 4 : 1; // display 3 meal days per line on large screens, 1 on small screens
+  const isMobile = useMediaQuery('(max-width: 829px)');
+  const isSmall = useMediaQuery('(min-width: 830px) and (max-width: 1249px)');
+  const isMedium = useMediaQuery('(min-width: 1250px) and (max-width: 1629px)');
+  const isLarge = useMediaQuery('(min-width: 1630px)');
+
+  let daysPerRow;
+
+  if (isLarge) {
+    daysPerRow = 4;
+  } else if (isMedium) {
+    daysPerRow = 3;
+  } else if (isSmall) {
+    daysPerRow = 2;
+  } else if (isMobile) {
+    daysPerRow = 1;
+  }
 
   const days = useSelector(daysSelector);
 
