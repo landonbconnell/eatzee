@@ -19,40 +19,48 @@ const LogInBoxStyles = {
 };
 
 const LogIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const handleLogin = () => {
-    axios
-      .post('http://localhost:5000/api/users/login', {
-        username,
-        password,
-      })
-      .then((res) => {
-        dispatch(setAccessToken(res.data.accessToken));
-        navigate('/home');
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          // User not found
-          setUsernameError(err.response.data.errors[0].msg);
-          setUsername('');
-          setPasswordError('');
-        } else if (err.response.status === 401) {
-          // Password is incorrect
-          setUsernameError('');
-          setPasswordError(err.response.data.errors[0].msg);
-          setPassword('');
-        } else if (err.response.status === 500) {
-          // Internal Server Error
-          console.log('Internal Server Error');
-        }
-      });
+    setUsernameError('');
+    setPasswordError('');
+
+    if (username && password) {
+      axios
+        .post('http://localhost:5000/api/users/login', {
+          username,
+          password,
+        })
+        .then((res) => {
+          dispatch(setAccessToken(res.data.accessToken));
+          navigate('/home');
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            // User not found
+            setUsername('');
+            setUsernameError(err.response.data.errors[0].msg);
+            setPassword('');
+            setPasswordError('');
+          } else if (err.response.status === 401) {
+            // Password is incorrect
+            setUsernameError('');
+            setPassword('');
+            setPasswordError(err.response.data.errors[0].msg);
+          } else if (err.response.status === 500) {
+            // Internal Server Error
+            console.log('Internal Server Error');
+          }
+        });
+    } else {
+      if (username === '') setUsernameError('Username is required');
+      if (password === '') setPasswordError('Password is required');
+    }
   };
 
   return (
@@ -60,7 +68,7 @@ const LogIn = () => {
       <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
-          sx={{ fontWeight: 'bold', margin: '1rem 0 2.5rem 0' }}
+          sx={{ fontWeight: 'bold', marginBottom: '2rem' }}
         >
           Welcome to Eatzier!
         </Typography>
@@ -71,7 +79,7 @@ const LogIn = () => {
           helperText={usernameError}
           error={usernameError ? true : false}
           onChange={(e) => setUsername(e.target.value)}
-          sx={{ width: '15rem', marginBottom: '1rem' }}
+          sx={{ width: '15rem', height: '6rem' }}
         />
         <TextField
           label='Password'
@@ -81,8 +89,9 @@ const LogIn = () => {
           helperText={passwordError}
           error={passwordError ? true : false}
           onChange={(e) => setPassword(e.target.value)}
-          sx={{ width: '15rem', marginBottom: '1rem' }}
+          sx={{ width: '15rem', height: '6rem' }}
         />
+
         <Typography
           variant='body2'
           sx={{ marginBottom: '1rem', color: 'secondary.dark' }}
