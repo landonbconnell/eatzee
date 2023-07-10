@@ -21,48 +21,60 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
   const [usernameErrors, setUsernameErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+  const [confirmErrors, setConfirmErrors] = useState<string[]>([]);
 
   const handleLogin = () => {
     setEmailErrors([]);
     setUsernameErrors([]);
     setPasswordErrors([]);
 
-    if (email && username && password) {
-      axios
-        .post('http://localhost:5000/api/users/register', {
-          email,
-          username,
-          password,
-        })
-        .then((res) => {
-          navigate('/');
-        })
-        .catch((err) => {
-          const errors = err.response.data.errors;
+    if (email && username && password && confirmPassword) {
+      if (password !== confirmPassword) {
+        setConfirmPassword('');
+        setConfirmErrors(['Passwords do not match']);
+      } else {
+        axios
+          .post('http://localhost:5000/api/users/register', {
+            email,
+            username,
+            password,
+          })
+          .then((res) => {
+            navigate('/');
+          })
+          .catch((err) => {
+            const errors = err.response.data.errors;
 
-          errors.forEach((error) => {
-            if (error.path === 'email') {
-              setEmailErrors((previousState) => [...previousState, error.msg]);
-            } else if (error.path === 'username') {
-              setUsernameErrors((previousState) => [
-                ...previousState,
-                error.msg,
-              ]);
-            } else {
-              setPasswordErrors((previousState) => [
-                ...previousState,
-                error.msg,
-              ]);
-            }
+            errors.forEach((error) => {
+              if (error.path === 'email') {
+                setEmailErrors((previousState) => [
+                  ...previousState,
+                  error.msg,
+                ]);
+              } else if (error.path === 'username') {
+                setUsernameErrors((previousState) => [
+                  ...previousState,
+                  error.msg,
+                ]);
+              } else {
+                setPasswordErrors((previousState) => [
+                  ...previousState,
+                  error.msg,
+                ]);
+              }
+            });
           });
-        });
+      }
     } else {
       if (email === '') setEmailErrors(['Email is required']);
       if (username === '') setUsernameErrors(['Username is required']);
       if (password === '') setPasswordErrors(['Password is required']);
+      if (confirmPassword === '')
+        setConfirmErrors(['Confirm password is required']);
     }
   };
 
@@ -96,6 +108,14 @@ const SignUp = () => {
           value={password}
           setValue={setPassword}
           errors={passwordErrors}
+        />
+
+        <SignUpField
+          label='Confirm Password'
+          type='password'
+          value={confirmPassword}
+          setValue={setConfirmPassword}
+          errors={confirmErrors}
         />
 
         <Button
