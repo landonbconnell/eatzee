@@ -11,7 +11,7 @@ exports.registerValidators = [
     .custom(async (value) => {
       const user = await User.findOne({ username: value });
       if (user) {
-        throw new Error("Username already in use.");
+        throw new Error("Username already in use");
       }
     }),
   body("password")
@@ -31,7 +31,7 @@ exports.registerValidators = [
     .custom(async (value) => {
       const user = await User.findOne({ email: value });
       if (user) {
-        throw new Error(`Email already in use by '${user.username}'.`);
+        throw new Error("Email already in use");
       }
     }),
 ];
