@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Hidden, Stack } from '@mui/material';
 import Carousel from './Carousel';
 import LogIn from './LogIn';
 
@@ -15,7 +15,9 @@ const LogInPage = () => {
       }}
     >
       <Stack direction='row'>
-        <Carousel />
+        <Hidden lgDown>
+          <Carousel />
+        </Hidden>
         <LogIn />
       </Stack>
     </Box>

@@ -4,21 +4,41 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from 'redux/reducers/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
-
-const LogInBoxStyles = {
-  minWidth: '20rem',
-  maxWidth: '30rem',
-  minHeight: '22.5rem',
-  maxHeight: '40rem',
-  padding: '5rem 5rem 2rem 5rem',
-  overflow: 'hidden',
-  borderTopRightRadius: '2.5rem',
-  borderBottomRightRadius: '2.5rem',
-  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-  backgroundColor: 'primary.light',
-};
+import { useTheme } from '@mui/system';
+import LogInField from './LogInField';
 
 const LogIn = () => {
+  const theme = useTheme();
+
+  // xs: 0px (0rem) and up
+  // sm: 600px (37.5rem) and up
+  // md: 960px (60rem) and up
+  // lg: 1280px (80rem) and up
+  // xl: 1920px (120rem) and up
+
+  const LogInBoxStyles = {
+    minWidth: '20rem',
+    maxWidth: '30rem',
+    minHeight: '22.5rem',
+    maxHeight: '40rem',
+    padding: '5rem 5rem 2rem 5rem',
+    overflow: 'hidden',
+    borderTopRightRadius: '2.5rem',
+    borderBottomRightRadius: '2.5rem',
+    boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
+    backgroundColor: 'primary.light',
+    [theme.breakpoints.down('lg')]: {
+      borderRadius: '2.5rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      minWidth: '15rem',
+      maxWidth: '30rem',
+      padding: '1.5rem',
+      borderRadius: '1.5rem',
+    },
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -62,29 +82,31 @@ const LogIn = () => {
       <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
-          sx={{ fontWeight: 'bold', marginBottom: '2rem' }}
+          sx={{
+            fontWeight: 'bold',
+            marginBottom: '2rem',
+            [theme.breakpoints.down('sm')]: {
+              marginBottom: '1.5rem',
+            },
+          }}
         >
           Welcome to Eatzier!
         </Typography>
-        <TextField
+
+        <LogInField
           label='Username'
-          value={username}
           type='text'
-          variant='outlined'
-          helperText={usernameError}
-          error={usernameError ? true : false}
-          onChange={(e) => setUsername(e.target.value)}
-          sx={{ width: '20rem', height: '6rem' }}
+          value={username}
+          setValue={setUsername}
+          error={usernameError}
         />
-        <TextField
+
+        <LogInField
           label='Password'
-          value={password}
           type='password'
-          variant='outlined'
-          helperText={passwordError}
-          error={passwordError ? true : false}
-          onChange={(e) => setPassword(e.target.value)}
-          sx={{ width: '20rem', height: '6rem' }}
+          value={password}
+          setValue={setPassword}
+          error={passwordError}
         />
 
         <Typography variant='body2' sx={{ color: 'secondary.dark' }}>
@@ -94,10 +116,14 @@ const LogIn = () => {
           variant='contained'
           onClick={handleLogin}
           sx={{
-            width: '15rem',
             margin: '2rem 0 4rem 0',
             backgroundColor: 'secondary.dark',
             color: 'primary.light',
+            width: '15rem',
+            [theme.breakpoints.down('sm')]: {
+              width: '12rem',
+              margin: '1.5rem 0 1.5rem 0',
+            },
           }}
         >
           Log In
