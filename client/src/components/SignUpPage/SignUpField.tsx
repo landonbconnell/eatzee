@@ -25,13 +25,17 @@ const SignUpField = ({
         variant='outlined'
         error={errors.length > 0}
         onChange={(e) => setValue(e.target.value)}
-        sx={{ width: '20rem' }}
+        sx={{ minWidth: '15rem', maxWidth: '20rem' }}
       />
       <Stack
         direction='column'
         justifyContent='flex-start'
         alignItems='flex-start'
-        sx={{ margin: '0.5rem 0 2rem 1rem', width: '20rem' }}
+        sx={{
+          margin: '0.5rem 0 2rem 1rem',
+          minWidth: '15rem',
+          maxWidth: '20rem',
+        }}
       >
         {errors.map((error, index) => (
           <Typography key={index} variant='caption' color='error.main'>

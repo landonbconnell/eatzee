@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import SignUpField from './SignUpField';
 
 const LogInBoxStyles = {
-  minWidth: '20rem',
+  minWidth: '15rem',
   maxWidth: '30rem',
   minHeight: '22.5rem',
-  maxHeight: '40rem',
+  maxHeight: '44rem',
   padding: '2rem',
   overflow: 'hidden',
   borderRadius: '2.5rem',

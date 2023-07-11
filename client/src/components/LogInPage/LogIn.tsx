@@ -7,10 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const LogInBoxStyles = {
   minWidth: '20rem',
-  maxWidth: '30rem', // Increase width
+  maxWidth: '30rem',
   minHeight: '22.5rem',
-  maxHeight: '30rem', // Increase height
-  padding: '2rem', // Increase padding
+  maxHeight: '40rem',
+  padding: '5rem 5rem 2rem 5rem',
   overflow: 'hidden',
   borderTopRightRadius: '2.5rem',
   borderBottomRightRadius: '2.5rem',
@@ -42,15 +42,8 @@ const LogIn = () => {
         })
         .catch((err) => {
           console.log(err);
-          if (err.response.status === 404) {
-            // User not found
-            setUsername('');
-            setUsernameError(err.response.data.errors[0].msg);
-            setPassword('');
-            setPasswordError('');
-          } else if (err.response.status === 401) {
-            // Password is incorrect
-            setUsernameError('');
+          if (err.response.status === 401) {
+            // Username or Password is incorrect
             setPassword('');
             setPasswordError(err.response.data.errors[0].msg);
           } else if (err.response.status === 500) {
@@ -81,7 +74,7 @@ const LogIn = () => {
           helperText={usernameError}
           error={usernameError ? true : false}
           onChange={(e) => setUsername(e.target.value)}
-          sx={{ width: '15rem', height: '6rem' }}
+          sx={{ width: '20rem', height: '6rem' }}
         />
         <TextField
           label='Password'
@@ -91,21 +84,18 @@ const LogIn = () => {
           helperText={passwordError}
           error={passwordError ? true : false}
           onChange={(e) => setPassword(e.target.value)}
-          sx={{ width: '15rem', height: '6rem' }}
+          sx={{ width: '20rem', height: '6rem' }}
         />
 
-        <Typography
-          variant='body2'
-          sx={{ marginBottom: '1rem', color: 'secondary.dark' }}
-        >
+        <Typography variant='body2' sx={{ color: 'secondary.dark' }}>
           Forgot Username/Password?
         </Typography>
         <Button
           variant='contained'
           onClick={handleLogin}
           sx={{
-            width: '12rem',
-            marginTop: '2rem',
+            width: '15rem',
+            margin: '2rem 0 4rem 0',
             backgroundColor: 'secondary.dark',
             color: 'primary.light',
           }}

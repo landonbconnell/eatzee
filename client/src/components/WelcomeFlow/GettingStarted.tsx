@@ -49,6 +49,7 @@ const GettingStarted = () => {
             direction='row'
             alignItems='center'
             justifyContent='space-between'
+            sx={{ width: '100%' }}
           >
             <Button
               variant='contained'
