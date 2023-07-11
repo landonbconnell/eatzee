@@ -6,8 +6,8 @@ import { createTheme, CssBaseline } from '@mui/material';
 import './styles/App.css';
 import LogInPage from 'components/LogInPage/LogInPage';
 import SignUpPage from 'components/SignUpPage/SignUpPage';
-import WelcomeFlow from 'components/WelcomeFlow/WelcomeFlow';
-import GettingStarted from 'components/WelcomeFlow/GettingStarted';
+import WelcomePage from 'components/GettingStartedFlow/WelcomePage';
+import GettingStartedFlow from 'components/GettingStartedFlow/GettingStartedFlow';
 
 const theme = createTheme({
   palette: {
@@ -50,8 +50,8 @@ const App = () => {
           <Route path='/' element={<LogInPage />} />
           <Route path='/signup' element={<SignUpPage />} />
           <Route path='/home' element={<HomePage />} />
-          <Route path='/welcome' element={<WelcomeFlow />} />
-          <Route path='/getting-started' element={<GettingStarted />} />
+          <Route path='/welcome' element={<WelcomePage />} />
+          <Route path='/getting-started' element={<GettingStartedFlow />} />
         </Routes>
       </ThemeProvider>
     </>
