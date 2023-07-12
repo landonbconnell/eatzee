@@ -1,9 +1,19 @@
 import * as React from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+
+const Paragraph = ({ text }) => {
+  return (
+    <Typography paragraph sx={{ padding: '0 1rem 0 1rem' }}>
+      {text}
+    </Typography>
+  );
+};
 
 const WelcomePage = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const WelcomePageBoxStyles = {
     minWidth: '20rem',
@@ -38,22 +48,21 @@ const WelcomePage = () => {
           >
             Welcome to Eatzier!
           </Typography>
-          <Typography paragraph sx={{ padding: '0 1rem 0 1rem' }}>
-            Here, we believe meal planning and grocery shopping should be
-            exciting, not exhausting.
-          </Typography>
-          <Typography paragraph sx={{ padding: '0 1rem 0 1rem' }}>
-            Eatzier personalizes daily meal plans across all meals, providing
+          <Paragraph text='Here, we believe meal planning and grocery shopping should be exciting, not exhausting.' />
+
+          <Paragraph
+            text='Eatzier personalizes daily meal plans across all meals, providing
             recipes aligned with your tastes. Our seamless integration with
             major grocery retailers lets you add ingredients to your cart with
-            one click for effortless shopping or pickup.
-          </Typography>
-          <Typography paragraph sx={{ padding: '0 1rem 0 1rem' }}>
-            With Eatzier, reclaim time, minimize stress, and rediscover the joy
-            of cooking - making life 'eatzier' one meal at a time!
-          </Typography>
+            one click for effortless shopping or pickup.'
+          />
+          <Paragraph
+            text="With Eatzier, reclaim time, minimize stress, and rediscover the joy
+            of cooking - making life 'eatzier' one meal at a time!"
+          />
           <Button
             variant='contained'
+            onClick={() => navigate('/getting-started')}
             sx={{
               backgroundColor: 'secondary.dark',
               color: 'primary.light',

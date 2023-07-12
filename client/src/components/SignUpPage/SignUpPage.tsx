@@ -1,21 +1,13 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
 import SignUp from './SignUp';
+import CenterBox from 'components/misc/CenterBox';
 
-const LogInPage = () => {
+const SignUpPage = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: 'secondary.light',
-      }}
-    >
+    <CenterBox>
       <SignUp />
-    </Box>
+    </CenterBox>
   );
 };
 
-export default LogInPage;
+export default SignUpPage;

@@ -4,8 +4,20 @@ import { useTheme } from '@mui/system';
 import { Button } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import GettingStarted from './GettingStarted';
+import CenterBox from 'components/misc/CenterBox';
 
 const GettingStartedFlowSteps = [<GettingStarted />];
+
+const ArrowButton = ({ onClick, disabled, children }) => (
+  <Button
+    size='small'
+    onClick={onClick}
+    disabled={disabled}
+    sx={{ color: 'secondary.dark' }}
+  >
+    {children}
+  </Button>
+);
 
 const GettingStartedFlow = () => {
   const theme = useTheme();
@@ -39,15 +51,7 @@ const GettingStartedFlow = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: 'secondary.light',
-      }}
-    >
+    <CenterBox>
       <Box sx={GettingStartedBoxStyles}>
         {GettingStartedFlowSteps[activeStep]}
         <MobileStepper
@@ -65,30 +69,20 @@ const GettingStartedFlow = () => {
             },
           }}
           nextButton={
-            <Button
-              size='small'
-              onClick={handleNext}
-              disabled={activeStep === 5}
-              sx={{ color: 'secondary.dark' }}
-            >
+            <ArrowButton onClick={handleNext} disabled={activeStep === 5}>
               Next
               <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
-            </Button>
+            </ArrowButton>
           }
           backButton={
-            <Button
-              size='small'
-              onClick={handleBack}
-              disabled={activeStep === 0}
-              sx={{ color: 'secondary.dark' }}
-            >
+            <ArrowButton onClick={handleBack} disabled={activeStep === 0}>
               <KeyboardArrowLeft sx={{ paddingBottom: '0.25rem' }} />
               Back
-            </Button>
+            </ArrowButton>
           }
         />
       </Box>
-    </Box>
+    </CenterBox>
   );
 };
 
