@@ -5,8 +5,9 @@ import { Button } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import GettingStarted from './GettingStarted';
 import CenterBox from 'components/misc/CenterBox';
+import DietAndAllergies from './DietAndAllergies';
 
-const GettingStartedFlowSteps = [<GettingStarted />];
+const GettingStartedFlowSteps = [<GettingStarted />, <DietAndAllergies />];
 
 const ArrowButton = ({ onClick, disabled, children }) => (
   <Button
@@ -31,6 +32,7 @@ const GettingStartedFlow = () => {
     minHeight: '25rem',
     padding: '2rem',
     borderRadius: '2.5rem',
+    overflow: 'auto',
     boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
     backgroundColor: 'primary.light',
     [theme.breakpoints.down('sm')]: {
