@@ -2,24 +2,22 @@ import React from 'react';
 import {
   Stack,
   Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  StepIcon,
+  FormControl,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSkillLevel } from 'redux/reducers/userSlice';
-import { skillLevelSelector } from 'redux/selectors/userSliceSelectors';
-import CustomStepIcon from 'components/misc/CustomStepIcon';
+import { portionSizeSelector } from 'redux/selectors/userSliceSelectors';
+import { setPortionSize } from 'redux/reducers/userSlice';
 
 const PortionSizes = () => {
-  const labels = [
-    'I can barely boil water',
-    'I can follow a recipe',
-    'I can whip up a gourmet meal',
-  ];
   const dispatch = useDispatch();
-  const skillLevel = useSelector(skillLevelSelector);
+  const portionSize = useSelector(portionSizeSelector);
+  const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  const handleChange = (number) => {
+    dispatch(setPortionSize(number));
+  };
 
   return (
     <Stack direction='column' justifyContent='center' alignItems='center'>
@@ -30,30 +28,20 @@ const PortionSizes = () => {
       >
         How many people do you typically cook for?
       </Typography>
-      <Stepper
-        nonLinear
-        activeStep={skillLevel}
-        alternativeLabel
-        sx={{ '.MuiStepConnector-line': { display: 'none' } }}
-      >
-        {labels.map((label, index) => {
-          const StepIconWithProps = (props) => (
-            <CustomStepIcon active={skillLevel === index} {...props} />
-          );
-          return (
-            <Step key={index}>
-              <StepLabel
-                StepIconComponent={StepIconWithProps}
-                onClick={() => dispatch(setSkillLevel(index))}
-              >
-                <Typography variant='body2' sx={{ fontSize: '12px' }}>
-                  {label}
-                </Typography>
-              </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+      <FormControl sx={{ width: '15rem' }}>
+        <Select
+          labelId='demo-simple-select-label'
+          id='demo-simple-select'
+          value={portionSize}
+          onChange={(event) => handleChange(event.target.value)}
+        >
+          {labels.map((number) => (
+            <MenuItem key={number} value={number}>
+              {number}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </Stack>
   );
 };

@@ -70,6 +70,7 @@ const DietAndAllergies = () => {
           <SeeMoreButton
             visible={dietaryVisible}
             setVisible={setDietaryVisible}
+            revealNum={4}
           />
         )}
       </Box>
@@ -96,6 +97,7 @@ const DietAndAllergies = () => {
           <SeeMoreButton
             visible={allergiesVisible}
             setVisible={setAllergiesVisible}
+            revealNum={4}
           />
         )}
       </Box>

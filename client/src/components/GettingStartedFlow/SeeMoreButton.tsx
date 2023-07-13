@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from '@mui/material';
 
-const SeeMoreButton = ({ visible, setVisible }) => (
+const SeeMoreButton = ({ visible, setVisible, revealNum }) => (
   <Button
     variant='text'
-    onClick={() => setVisible(visible + 4)}
+    onClick={() => setVisible(visible + revealNum)}
     sx={{
       backgroundColor: 'secondary.dark',
       color: 'primary.light',

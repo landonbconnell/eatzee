@@ -6,3 +6,5 @@ export const dietaryRestrictionsSelector = (state) =>
 export const allergiesSelector = (state) => state.user.allergies;
 
 export const cookingEquipmentSelector = (state) => state.user.cookingEquipment;
+
+export const portionSizeSelector = (state) => state.user.portionSize;

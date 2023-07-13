@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Stepper,
-  Step,
-  StepLabel,
-  Stack,
-  StepIcon,
-  Typography,
-} from '@mui/material';
+import { Stepper, Step, StepLabel, Stack, Typography } from '@mui/material';
 import { updateVariable } from 'redux/reducers/mealsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { daysSelector } from 'redux/selectors/daysSelector';
@@ -19,8 +12,6 @@ interface VariableStepperProps {
   variable: Variables;
   labels: string[];
 }
-
-/* main component */
 
 const VariableStepper = ({
   weekday,

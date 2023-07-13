@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Stack,
-  Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  StepIcon,
-} from '@mui/material';
+import { Stack, Typography, Stepper, Step, StepLabel } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSkillLevel } from 'redux/reducers/userSlice';
 import { skillLevelSelector } from 'redux/selectors/userSliceSelectors';
