@@ -3,8 +3,10 @@ import { Box, Typography, Grid } from '@mui/material';
 import {
   DietaryRestrictions,
   Allergies,
-  setDietaryRestrictions,
-  setAllergies,
+  addDietaryRestriction,
+  addAllergy,
+  removeDietaryRestriction,
+  removeAllergy,
 } from 'redux/reducers/userSlice';
 import { useDispatch } from 'react-redux';
 import CheckBoxes from './CheckBoxes';
@@ -16,11 +18,19 @@ const DietAndAllergies = () => {
   const [allergiesVisible, setAllergiesVisible] = useState(6);
 
   const handleDietaryChange = (event) => {
-    dispatch(setDietaryRestrictions(event.target.name));
+    if (event.target.checked) {
+      dispatch(addDietaryRestriction(event.target.name));
+    } else {
+      dispatch(removeDietaryRestriction(event.target.name));
+    }
   };
 
   const handleAllergiesChange = (event) => {
-    dispatch(setAllergies(event.target.name));
+    if (event.target.checked) {
+      dispatch(addAllergy(event.target.name));
+    } else {
+      dispatch(removeAllergy(event.target.name));
+    }
   };
 
   const dietaryRestrictions = Object.values(DietaryRestrictions);
@@ -29,14 +39,21 @@ const DietAndAllergies = () => {
   return (
     <Box sx={{ overflow: 'auto', maxHeight: '36rem' }}>
       <Box sx={{ marginBottom: '2rem' }}>
-        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+        <Typography
+          variant='h6'
+          sx={{
+            fontWeight: 'bold',
+            marginBottom: '0.50rem',
+          }}
+        >
           Dietary Restrictions
         </Typography>
-        <Grid container>
+        <Grid container sx={{ marginBottom: '0.5rem' }}>
           {dietaryRestrictions
             .slice(0, dietaryVisible)
             .map((restriction, index) => (
               <CheckBoxes
+                key={index}
                 name={restriction}
                 index={index}
                 onChange={handleDietaryChange}
@@ -52,12 +69,16 @@ const DietAndAllergies = () => {
       </Box>
 
       <Box sx={{ marginBottom: '2rem' }}>
-        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+        <Typography
+          variant='h6'
+          sx={{ fontWeight: 'bold', marginBottom: '0.50rem' }}
+        >
           Allergies
         </Typography>
-        <Grid container>
+        <Grid container sx={{ marginBottom: '0.5rem' }}>
           {allergies.slice(0, allergiesVisible).map((allergy, index) => (
             <CheckBoxes
+              key={index}
               name={allergy}
               index={index}
               onChange={handleAllergiesChange}
