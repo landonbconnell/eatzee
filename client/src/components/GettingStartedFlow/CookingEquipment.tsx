@@ -1,6 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import {
+  addCookingEquipment,
+  removeCookingEquipment,
+} from 'redux/reducers/userSlice';
 import { Stack, Step, StepLabel, Stepper, Typography } from '@mui/material';
 
 const CookingEquipment = () => {
@@ -13,12 +16,6 @@ const CookingEquipment = () => {
       >
         What cooking equipment do you have?
       </Typography>
-      <Stepper
-        nonLinear
-        activeStep={skillLevel}
-        alternativeLabel
-        sx={{ '.MuiStepConnector-line': { display: 'none' } }}
-      ></Stepper>
     </Stack>
   );
 };

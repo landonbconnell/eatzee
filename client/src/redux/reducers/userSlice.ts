@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { DietaryRestrictions, Allergies } from '../../models/user/enums';
+import {
+  DietaryRestrictions,
+  Allergies,
+  CookingEquipment,
+} from '../../models/user/enums';
 
 // create another enum for Dietary Restrictions, but
 export interface UserState {
   dietaryRestrictions: DietaryRestrictions[];
   allergies: Allergies[];
   skillLevel: number;
+  cookingEquipment: CookingEquipment[];
 }
 
 const initialState: UserState = {
   dietaryRestrictions: [],
   allergies: [],
   skillLevel: 1,
+  cookingEquipment: [],
 };
 
 export const userSlice = createSlice({
@@ -47,6 +53,17 @@ export const userSlice = createSlice({
     setSkillLevel: (state, action: PayloadAction<number>) => {
       state.skillLevel = action.payload;
     },
+    addCookingEquipment: (state, action: PayloadAction<CookingEquipment>) => {
+      state.cookingEquipment = [...state.cookingEquipment, action.payload];
+    },
+    removeCookingEquipment: (
+      state,
+      action: PayloadAction<CookingEquipment>
+    ) => {
+      state.cookingEquipment = state.cookingEquipment.filter(
+        (equipment) => action.payload !== equipment
+      );
+    },
   },
 });
 
@@ -58,6 +75,8 @@ export const {
   addAllergy,
   removeAllergy,
   setSkillLevel,
+  addCookingEquipment,
+  removeCookingEquipment,
 } = userSlice.actions;
 
 export default userSlice.reducer;
