@@ -25,6 +25,7 @@ const PortionSizes = () => {
         variant='h5'
         align='center'
         sx={{ margin: '0 1rem 4.5rem 1rem' }}
+        fontWeight='bold'
       >
         How many people do you typically cook for?
       </Typography>

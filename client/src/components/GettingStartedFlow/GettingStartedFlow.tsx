@@ -37,7 +37,7 @@ const GettingStartedFlow = () => {
     flexDirection: 'column',
     justifyContent: 'space-between',
     minWidth: '20rem',
-    maxWidth: '30rem',
+    maxWidth: '24rem',
     minHeight: '25rem',
     padding: '2rem',
     borderRadius: '2.5rem',
