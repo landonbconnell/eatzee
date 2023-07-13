@@ -13,19 +13,7 @@ import { daysSelector } from 'redux/selectors/daysSelector';
 import { variableToPropString, variableToString } from 'utils/variableToString';
 import { Weekdays } from 'models/meals/enums/Weekdays';
 import { Variables } from 'models/meals/enums/Variables';
-
-/* local helper component */
-const CustomStepIcon = ({ active, ...props }) => {
-  return (
-    <StepIcon
-      {...props}
-      icon={''}
-      sx={{
-        color: active ? 'secondary.dark' : 'primary.main',
-      }}
-    />
-  );
-};
+import CustomStepIcon from 'components/misc/CustomStepIcon';
 
 interface VariableStepperProps {
   weekday: Weekdays;

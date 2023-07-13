@@ -10,18 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { setSkillLevel } from 'redux/reducers/userSlice';
 import { skillLevelSelector } from 'redux/selectors/userSliceSelectors';
-
-const CustomStepIcon = ({ active, ...props }) => {
-  return (
-    <StepIcon
-      {...props}
-      icon={''}
-      sx={{
-        color: active ? 'secondary.dark' : 'primary.main',
-      }}
-    />
-  );
-};
+import CustomStepIcon from 'components/misc/CustomStepIcon';
 
 const CookingSkill = () => {
   const labels = [

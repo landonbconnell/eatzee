@@ -8,12 +8,18 @@ import {
   removeDietaryRestriction,
   removeAllergy,
 } from 'redux/reducers/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckBoxes from './CheckBoxes';
 import SeeMoreButton from './SeeMoreButton';
+import {
+  allergiesSelector,
+  dietaryRestrictionsSelector,
+} from 'redux/selectors/userSliceSelectors';
 
 const DietAndAllergies = () => {
   const dispatch = useDispatch();
+  const selectedDietaryRestrictions = useSelector(dietaryRestrictionsSelector);
+  const selectedAllergies = useSelector(allergiesSelector);
   const [dietaryVisible, setDietaryVisible] = useState(6);
   const [allergiesVisible, setAllergiesVisible] = useState(6);
 
@@ -57,6 +63,7 @@ const DietAndAllergies = () => {
                 name={restriction}
                 index={index}
                 onChange={handleDietaryChange}
+                checked={selectedDietaryRestrictions.includes(restriction)}
               />
             ))}
         </Grid>
@@ -82,6 +89,7 @@ const DietAndAllergies = () => {
               name={allergy}
               index={index}
               onChange={handleAllergiesChange}
+              checked={selectedAllergies.includes(allergy)}
             />
           ))}
         </Grid>
