@@ -1,7 +1,6 @@
 import { MealsState } from 'redux/reducers/mealsSlice';
-import { Weekdays } from './enums/Weekdays';
-import { Day } from './interfaces/Day';
-import { Meals } from './enums/Meals';
+import { Weekdays, Meals } from './enums';
+import { Day } from './interfaces';
 
 export const initialDays: Day[] = [
   {

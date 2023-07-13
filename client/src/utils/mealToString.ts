@@ -1,4 +1,4 @@
-import { Meals } from '../models/meals/enums/Meals';
+import { Meals } from '../models/meals/enums';
 
 export const mealToString = (meal: Meals) => {
   switch (meal) {

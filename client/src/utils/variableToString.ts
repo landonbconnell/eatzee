@@ -1,4 +1,4 @@
-import { Variables } from 'models/meals/enums/Variables';
+import { Variables } from 'models/meals/enums';
 
 export const variableToString = (variable: Variables) => {
   switch (variable) {

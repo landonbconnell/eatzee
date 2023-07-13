@@ -1,4 +1,4 @@
-import { Weekdays } from 'models/meals/enums/Weekdays';
+import { Weekdays } from 'models/meals/enums';
 
 export const weekdayToString = (weekday: Weekdays) => {
   switch (weekday) {
