@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Day } from 'models/meals/interfaces/Day';
+import { Day } from 'models/meals/interfaces';
 import { Box, Stack, Typography } from '@mui/material';
 import { weekdayToString } from 'utils/weekdayToString';
 

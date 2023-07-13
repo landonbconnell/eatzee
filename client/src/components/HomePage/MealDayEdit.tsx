@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material';
 import * as React from 'react';
-import { Day } from 'models/meals/interfaces/Day';
+import { Day } from 'models/meals/interfaces';
 import { weekdayToString } from 'utils/weekdayToString';
 import VariableStepper from './VariableStepper';
-import { Variables } from 'models/meals/enums/Variables';
+import { Variables } from 'models/meals/enums';
 
 const dayTypographyStyles = {
   color: 'primary.contrastText',

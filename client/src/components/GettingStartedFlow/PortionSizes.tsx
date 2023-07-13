@@ -1,58 +1,50 @@
 import React from 'react';
 import {
+  Stack,
+  Typography,
   Stepper,
   Step,
   StepLabel,
-  Stack,
   StepIcon,
-  Typography,
 } from '@mui/material';
-import { updateVariable } from 'redux/reducers/mealsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { daysSelector } from 'redux/selectors/daysSelector';
-import { variableToPropString, variableToString } from 'utils/variableToString';
-import { Weekdays, Variables } from 'models/meals/enums';
+import { setSkillLevel } from 'redux/reducers/userSlice';
+import { skillLevelSelector } from 'redux/selectors/userSliceSelectors';
 import CustomStepIcon from 'components/misc/CustomStepIcon';
 
-interface VariableStepperProps {
-  weekday: Weekdays;
-  variable: Variables;
-  labels: string[];
-}
-
-/* main component */
-
-const VariableStepper = ({
-  weekday,
-  variable,
-  labels,
-}: VariableStepperProps) => {
+const PortionSizes = () => {
+  const labels = [
+    'I can barely boil water',
+    'I can follow a recipe',
+    'I can whip up a gourmet meal',
+  ];
   const dispatch = useDispatch();
-  const days = useSelector(daysSelector);
-  const activeStep = days[weekday][variableToPropString(variable)];
+  const skillLevel = useSelector(skillLevelSelector);
 
   return (
     <Stack direction='column' justifyContent='center' alignItems='center'>
-      <Typography sx={{ padding: '1rem 0 1rem 0' }}>
-        {variableToString(variable)}
+      <Typography
+        variant='h5'
+        align='center'
+        sx={{ margin: '0 1rem 4.5rem 1rem' }}
+      >
+        How many people do you typically cook for?
       </Typography>
       <Stepper
         nonLinear
-        activeStep={activeStep}
+        activeStep={skillLevel}
         alternativeLabel
         sx={{ '.MuiStepConnector-line': { display: 'none' } }}
       >
         {labels.map((label, index) => {
           const StepIconWithProps = (props) => (
-            <CustomStepIcon active={activeStep === index} {...props} />
+            <CustomStepIcon active={skillLevel === index} {...props} />
           );
           return (
             <Step key={index}>
               <StepLabel
                 StepIconComponent={StepIconWithProps}
-                onClick={() =>
-                  dispatch(updateVariable({ weekday, variable, value: index }))
-                }
+                onClick={() => dispatch(setSkillLevel(index))}
               >
                 <Typography variant='body2' sx={{ fontSize: '12px' }}>
                   {label}
@@ -66,4 +58,4 @@ const VariableStepper = ({
   );
 };
 
-export default VariableStepper;
+export default PortionSizes;

@@ -2,10 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { mealToPropString } from 'utils/mealToString';
 import { variableToPropString } from 'utils/variableToString';
-import { Weekdays } from 'models/meals/enums/Weekdays';
-import { Variables } from 'models/meals/enums/Variables';
-import { Meals } from 'models/meals/enums/Meals';
-import { Day } from 'models/meals/interfaces/Day';
+import { Weekdays, Variables, Meals } from 'models/meals/enums';
+import { Day } from 'models/meals/interfaces';
 import { mealsInitialState as initialState } from 'models/meals/mealsInitialState';
 
 export interface MealsState {

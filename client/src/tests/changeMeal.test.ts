@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import mealsReducer, { changeMeal } from 'redux/reducers/mealsSlice';
-import { Meals } from 'models/meals/enums/Meals';
+import { Meals } from 'models/meals/enums';
 import { mealsInitialState } from 'models/meals/mealsInitialState';
 
 describe('update variables reducer', () => {

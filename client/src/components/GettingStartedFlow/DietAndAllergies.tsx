@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import {
-  DietaryRestrictions,
-  Allergies,
   addDietaryRestriction,
   addAllergy,
   removeDietaryRestriction,
   removeAllergy,
 } from 'redux/reducers/userSlice';
+import { DietaryRestrictions, Allergies } from '../../models/user/enums';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckBoxes from './CheckBoxes';
 import SeeMoreButton from './SeeMoreButton';

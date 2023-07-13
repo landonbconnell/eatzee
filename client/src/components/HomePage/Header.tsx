@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MealTab from './MealTab';
-import { Meals } from 'models/meals/enums/Meals';
+import { Meals } from 'models/meals/enums';
 
 const Header = () => {
   const theme = useTheme();

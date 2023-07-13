@@ -1,4 +1,4 @@
-import { Meals } from 'models/meals/enums/Meals';
+import { Meals } from 'models/meals/enums';
 import { createSelector } from 'reselect';
 import { currentMealSelector } from './currentMealSelector';
 

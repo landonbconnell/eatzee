@@ -4,9 +4,7 @@ import mealsReducer, {
   changeMeal,
 } from 'redux/reducers/mealsSlice';
 import { mealsInitialState } from '../models/meals/mealsInitialState';
-import { Weekdays } from '../models/meals/enums/Weekdays';
-import { Variables } from '../models/meals/enums/Variables';
-import { Meals } from 'models/meals/enums/Meals';
+import { Weekdays, Variables, Meals } from '../models/meals/enums';
 
 describe('update variables reducer', () => {
   let store;
