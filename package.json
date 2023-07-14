@@ -4,8 +4,7 @@
   "description": "Eatzee streamlines your daily routine as a comprehensive meal planning and grocery shopping tool. By allowing users to create personalized meal plans tailored to dietary needs and lifestyle, Eatzee eradicates the stress of deciding what to eat. In a single click, these meal plans transform into efficient shopping lists ready for in-store use or online pickup from partnered retailers, making grocery shopping a breeze. ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -16,20 +15,5 @@
   "bugs": {
     "url": "https://github.com/landonbconnell/eatzee/issues"
   },
-  "homepage": "https://github.com/landonbconnell/eatzee#readme",
-  "dependencies": {
-    "axios": "^1.4.0",
-    "base-64": "^1.0.0",
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-jwt": "^8.4.1",
-    "express-rate-limit": "^6.7.1",
-    "express-validator": "^7.0.1",
-    "jsonwebtoken": "^9.0.1",
-    "mongodb": "^5.7.0",
-    "mongoose": "^7.3.2"
-  }
+  "homepage": "https://github.com/landonbconnell/eatzee#readme"
 }
