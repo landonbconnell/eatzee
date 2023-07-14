@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require("mongoose");
 
 main().catch((err) => console.log(err));
 
@@ -9,8 +8,8 @@ async function main() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.log('Error connecting to the database', err));
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.log("Error connecting to the database", err));
 }
 
 module.exports = main;

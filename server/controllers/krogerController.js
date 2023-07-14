@@ -1,6 +1,5 @@
 const axios = require("axios");
 const base64 = require("base-64");
-require("dotenv").config({ path: `../../.env` });
 
 const client_id = process.env.KROGER_CLIENT_ID;
 const client_secret = process.env.KROGER_CLIENT_SECRET;

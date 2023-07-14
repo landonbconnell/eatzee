@@ -4,7 +4,6 @@ const dbConnect = require("./config/db");
 const cors = require("cors");
 const apiRoutes = require("./routes/apiRoutes");
 const cookieParser = require("cookie-parser");
-require("dotenv").config();
 
 // Create a new express application
 const app = express();
