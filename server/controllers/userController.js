@@ -19,10 +19,10 @@ const login = async (req, res) => {
           function (err, result) {
             if (result) {
               // Generate an access token
-              const accessToken = generateAccessToken(user.username);
+              const token = generateAccessToken(user.username);
 
               // Set token in an HTTP-only cookie
-              res.cookie("token", accessToken, {
+              res.cookie("token", token, {
                 httpOnly: true,
                 sameSite: "strict", // protection against CSRF
                 secure: process.env.NODE_ENV !== "development", // use HTTPS in production
