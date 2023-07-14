@@ -4,9 +4,15 @@ const dbConnect = require("./config/db");
 const cors = require("cors");
 const apiRoutes = require("./routes/apiRoutes");
 const cookieParser = require("cookie-parser");
+const {
+  refreshKrogerAccessToken,
+} = require("./services/kroger/refreshKrogerAccessToken");
 
 // Create a new express application
 const app = express();
+
+// Retrieves all access tokens and refreshes it before expiring
+refreshKrogerAccessToken();
 
 app.use(cookieParser());
 
@@ -22,7 +28,7 @@ app.listen(port, () => {
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
   })
 );
 
