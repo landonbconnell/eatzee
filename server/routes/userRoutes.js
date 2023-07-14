@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { validationResult } = require("express-validator");
-const { login, registerNewUser } = require("../controllers/userController.js");
+const {
+  login,
+  logout,
+  registerNewUser,
+} = require("../controllers/userController.js");
 const {
   registerValidators,
 } = require("../middleware/registration/registerValidators.js");
