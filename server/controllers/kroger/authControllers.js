@@ -6,7 +6,7 @@ const kroger_api_url = process.env.KROGER_API_URL;
 
 const requestAuthCode = async () => {
   const params = {
-    scope: "product.compact",
+    scope: "product.compact cart.basic:write profile.compact",
     response_type: "code",
     client_id,
     redirect_uri: process.env.KROGER_REDIRECT_URI || "",
