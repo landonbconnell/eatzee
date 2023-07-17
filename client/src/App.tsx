@@ -9,6 +9,7 @@ import SignUpPage from 'components/SignUpPage/SignUpPage';
 import WelcomePage from 'components/GettingStartedFlow/WelcomePage';
 import GettingStartedFlow from 'components/GettingStartedFlow/GettingStartedFlow';
 import KrogerButton from 'components/Kroger/KrogerButton';
+import KrogerProofOfConcept from 'components/Kroger/KrogerProofOfConcept';
 
 const theme = createTheme({
   palette: {
@@ -53,7 +54,7 @@ const App = () => {
           <Route path='/home' element={<HomePage />} />
           <Route path='/welcome' element={<WelcomePage />} />
           <Route path='/getting-started' element={<GettingStartedFlow />} />
-          <Route path='/krogerButton' element={<KrogerButton />} />
+          <Route path='/kroger' element={<KrogerProofOfConcept />} />
         </Routes>
       </ThemeProvider>
     </>
