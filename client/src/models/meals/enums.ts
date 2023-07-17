@@ -19,4 +19,5 @@ export enum Weekdays {
   Friday,
   Saturday,
   Sunday,
+  All,
 }

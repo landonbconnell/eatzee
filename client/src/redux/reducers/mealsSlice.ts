@@ -29,7 +29,7 @@ export const mealsSlice = createSlice({
     changeMeal: (state, action: PayloadAction<Meals>) => {
       state.currentMeal = action.payload;
     },
-    updateVariable: (
+    updateDayVariable: (
       state,
       action: PayloadAction<{
         weekday: Weekdays;
@@ -38,15 +38,32 @@ export const mealsSlice = createSlice({
       }>
     ) => {
       const { weekday, variable, value } = action.payload;
+
       state.meals[mealToPropString(state.currentMeal)].days[weekday][
         variableToPropString(variable)
       ] = value;
+    },
+    updateWeekVariable: (
+      state,
+      action: PayloadAction<{
+        variable: Variables;
+        value: number;
+      }>
+    ) => {
+      const { variable, value } = action.payload;
+
+      state.meals[mealToPropString(state.currentMeal)].days.forEach(
+        (day: Day) => {
+          day[variableToPropString(variable)] = value;
+        }
+      );
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 
-export const { changeMeal, updateVariable } = mealsSlice.actions;
+export const { changeMeal, updateDayVariable, updateWeekVariable } =
+  mealsSlice.actions;
 
 export default mealsSlice.reducer;

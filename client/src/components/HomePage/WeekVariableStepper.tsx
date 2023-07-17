@@ -1,26 +1,24 @@
 import React from 'react';
 import { Stepper, Step, StepLabel, Stack, Typography } from '@mui/material';
-import { updateDayVariable } from 'redux/reducers/mealsSlice';
+import { updateWeekVariable } from 'redux/reducers/mealsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { daysSelector } from 'redux/selectors/daysSelector';
 import { variableToPropString, variableToString } from 'utils/variableToString';
 import { Weekdays, Variables } from 'models/meals/enums';
 import CustomStepIcon from 'components/misc/CustomStepIcon';
 
-interface VariableStepperProps {
-  weekday: Weekdays;
+interface WeekVariableStepperProps {
   variable: Variables;
   labels: string[];
 }
 
-const VariableStepper = ({
-  weekday,
+const WeekVariableStepper = ({
   variable,
   labels,
-}: VariableStepperProps) => {
+}: WeekVariableStepperProps) => {
   const dispatch = useDispatch();
   const days = useSelector(daysSelector);
-  const activeStep = days[weekday][variableToPropString(variable)];
+  const activeStep = days[0][variableToPropString(variable)];
 
   return (
     <Stack direction='column' justifyContent='center' alignItems='center'>
@@ -42,9 +40,7 @@ const VariableStepper = ({
               <StepLabel
                 StepIconComponent={StepIconWithProps}
                 onClick={() =>
-                  dispatch(
-                    updateDayVariable({ weekday, variable, value: index })
-                  )
+                  dispatch(updateWeekVariable({ variable, value: index }))
                 }
               >
                 <Typography variant='body2' sx={{ fontSize: '12px' }}>
@@ -59,4 +55,4 @@ const VariableStepper = ({
   );
 };
 
-export default VariableStepper;
+export default WeekVariableStepper;
