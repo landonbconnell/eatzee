@@ -6,7 +6,7 @@ import { Stack } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { daysSelector } from 'redux/selectors/daysSelector';
 
-const MealWeek = () => {
+const MealWeekView = () => {
   const isMobile = useMediaQuery('(max-width: 829px)');
   const isSmall = useMediaQuery('(min-width: 830px) and (max-width: 1249px)');
   const isMedium = useMediaQuery('(min-width: 1250px) and (max-width: 1629px)');
@@ -57,4 +57,4 @@ const MealWeek = () => {
   );
 };
 
-export default MealWeek;
+export default MealWeekView;

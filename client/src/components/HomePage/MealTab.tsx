@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 import { mealToString } from 'utils/mealToString';
-import { currentMealSelector } from 'redux/selectors/currentMealSelector';
+import { currentMealSelector } from 'redux/selectors/mealsSelector';
 import { changeMeal } from 'redux/reducers/mealsSlice';
 import { Meals } from 'models/meals/enums';
 

@@ -7,6 +7,7 @@ import { Day } from 'models/meals/interfaces';
 import { mealsInitialState as initialState } from 'models/meals/mealsInitialState';
 
 export interface MealsState {
+  editMode: boolean;
   currentMeal: Meals;
   meals: {
     breakfast: {

@@ -1,6 +1,6 @@
 import { Meals } from 'models/meals/enums';
 import { createSelector } from 'reselect';
-import { currentMealSelector } from './currentMealSelector';
+import { currentMealSelector } from './mealsSelector';
 
 export const breakfastDaysSelector = (state) =>
   state.meals.meals.breakfast.days;
