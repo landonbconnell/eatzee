@@ -3,20 +3,33 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SignUpField from './SignUpField';
-
-const LogInBoxStyles = {
-  minWidth: '15rem',
-  maxWidth: '30rem',
-  minHeight: '22.5rem',
-  maxHeight: '44rem',
-  padding: '2rem',
-  overflow: 'hidden',
-  borderRadius: '2.5rem',
-  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-  backgroundColor: 'primary.light',
-};
+import { useTheme } from '@mui/system';
 
 const SignUp = () => {
+  const theme = useTheme();
+
+  const SignInBoxStyles = {
+    minWidth: '20rem',
+    maxWidth: '30rem',
+    minHeight: '22.5rem',
+    maxHeight: '40rem',
+    padding: '4rem 5rem 2rem 5rem',
+    overflow: 'hidden',
+    borderRadius: '2.5rem',
+    boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
+    backgroundColor: 'primary.light',
+    [theme.breakpoints.down('lg')]: {
+      borderRadius: '2.5rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      minWidth: '15rem',
+      maxWidth: '30rem',
+      padding: '1.5rem',
+      borderRadius: '1.5rem',
+    },
+  };
+
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -78,7 +91,7 @@ const SignUp = () => {
   };
 
   return (
-    <Box sx={LogInBoxStyles}>
+    <Box sx={SignInBoxStyles}>
       <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'

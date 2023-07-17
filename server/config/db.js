@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 async function main() {
   await mongoose
@@ -6,8 +6,8 @@ async function main() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.log("Error connecting to the database", err));
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.log('Error connecting to the database', err));
 }
 
 module.exports = main;
