@@ -66,12 +66,15 @@ export const mealsInitialState: MealsState = {
   currentMeal: Meals.breakfast,
   meals: {
     breakfast: {
+      cuisines: [],
       days: initialDays,
     },
     lunch: {
+      cuisines: [],
       days: initialDays,
     },
     dinner: {
+      cuisines: [],
       days: initialDays,
     },
   },

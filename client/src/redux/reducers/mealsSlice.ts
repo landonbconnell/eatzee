@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { mealToPropString } from 'utils/mealToString';
 import { variableToPropString } from 'utils/variableToString';
-import { Weekdays, Variables, Meals } from 'models/meals/enums';
+import { Weekdays, Variables, Meals, Cuisines } from 'models/meals/enums';
 import { Day } from 'models/meals/interfaces';
 import { mealsInitialState as initialState } from 'models/meals/mealsInitialState';
 
@@ -11,12 +11,15 @@ export interface MealsState {
   currentMeal: Meals;
   meals: {
     breakfast: {
+      cuisines: Cuisines[];
       days: Day[];
     };
     lunch: {
+      cuisines: Cuisines[];
       days: Day[];
     };
     dinner: {
+      cuisines: Cuisines[];
       days: Day[];
     };
   };
@@ -58,12 +61,40 @@ export const mealsSlice = createSlice({
         }
       );
     },
+    addCuisine: (
+      state,
+      action: PayloadAction<{
+        cuisine: Cuisines;
+      }>
+    ) => {
+      const newCuisine = action.payload;
+      state.meals[mealToPropString(state.currentMeal)].cuisines = [
+        ...state.meals[mealToPropString(state.currentMeal)].cuisines,
+        newCuisine,
+      ];
+    },
+    removeCuisine: (
+      state,
+      action: PayloadAction<{
+        cuisine: Cuisines;
+      }>
+    ) => {
+      const newCuisine = action.payload;
+      state.meals[mealToPropString(state.currentMeal)].cuisines = state.meals[
+        mealToPropString(state.currentMeal)
+      ].cuisines.filter((cuisine) => cuisine !== newCuisine);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
 
-export const { changeMeal, updateDayVariable, updateWeekVariable } =
-  mealsSlice.actions;
+export const {
+  changeMeal,
+  updateDayVariable,
+  updateWeekVariable,
+  addCuisine,
+  removeCuisine,
+} = mealsSlice.actions;
 
 export default mealsSlice.reducer;
