@@ -9,6 +9,7 @@ import DietAndAllergies from './DietAndAllergies';
 import CookingSkill from './CookingSkill';
 import CookingEquipment from './CookingEquipment';
 import PortionSizes from './PortionSizes';
+import Review from './Review';
 
 const GettingStartedFlowSteps = [
   <GettingStarted />,
@@ -16,6 +17,7 @@ const GettingStartedFlowSteps = [
   <CookingSkill />,
   <CookingEquipment />,
   <PortionSizes />,
+  <Review />,
 ];
 
 const ArrowButton = ({ onClick, disabled, children }) => (
