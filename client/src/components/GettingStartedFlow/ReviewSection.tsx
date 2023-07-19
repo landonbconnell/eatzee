@@ -4,7 +4,7 @@ import {
   CookingEquipment,
   DietaryRestrictions,
 } from 'models/user/enums';
-import { Stack, Typography, IconButton, Box } from '@mui/material';
+import { Stack, Typography, IconButton } from '@mui/material';
 import Close from '@mui/icons-material/Close';
 
 interface ReviewSectionProps {
@@ -33,25 +33,32 @@ const ReviewSection = ({
       >
         {variable}
       </Typography>
-      {values.map((value, index) => (
-        <Stack
-          direction='row'
-          justifyContent='space-between'
-          alignItems='center'
-          key={index}
-          sx={{ width: '100%' }}
-        >
-          <Typography variant='body1' sx={{ ml: '1rem' }}>
-            {value}
-          </Typography>
-          <IconButton
-            onClick={() => handleRemove(value)}
-            sx={{ p: '0.25rem', mr: '1rem' }}
+
+      {values.length > 0 ? (
+        values.map((value, index) => (
+          <Stack
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+            key={index}
+            sx={{ width: '100%' }}
           >
-            <Close />
-          </IconButton>
-        </Stack>
-      ))}
+            <Typography variant='body1' sx={{ ml: '1rem' }}>
+              {value}
+            </Typography>
+            <IconButton
+              onClick={() => handleRemove(value)}
+              sx={{ p: '0.25rem', mr: '1rem' }}
+            >
+              <Close />
+            </IconButton>
+          </Stack>
+        ))
+      ) : (
+        <Typography variant='body1' sx={{ ml: '1rem' }}>
+          None
+        </Typography>
+      )}
     </Stack>
   );
 };

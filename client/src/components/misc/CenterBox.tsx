@@ -8,7 +8,9 @@ const CenterBox = ({ children }) => (
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      backgroundColor: 'secondary.light',
+      //backgroundColor: 'secondary.light',
+      background:
+        'linear-gradient(180deg, rgba(163,185,220,1) 0%, rgba(52,86,139,1) 100%)',
     }}
   >
     {children}

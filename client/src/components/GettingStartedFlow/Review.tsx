@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSettingsSelector } from 'redux/selectors/userSliceSelectors';
 import {
@@ -7,6 +7,7 @@ import {
   removeDietaryRestriction,
   removeCookingEquipment,
   setPortionSize,
+  setSkillLevel,
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
 import Selector from 'components/misc/Selector';
@@ -14,6 +15,13 @@ import Selector from 'components/misc/Selector';
 const Review = () => {
   const dispatch = useDispatch();
   const userSettings = useSelector(userSettingsSelector);
+
+  const portionLabels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const skillLabels = [
+    'I can barely boil water',
+    'I can follow a recipe',
+    'I can whip up a gourmet meal',
+  ];
 
   const handleRemoveDietaryRestriction = (dietaryRestriction) => {
     dispatch(removeDietaryRestriction(dietaryRestriction));
@@ -31,64 +39,79 @@ const Review = () => {
     dispatch(setPortionSize(portionSize));
   };
 
-  return (
-    <Stack direction='column' justifyContent='center' alignItems='flex-start'>
-      <Typography
-        variant='h5'
-        align='center'
-        sx={{ margin: '0 1rem 1rem 1rem' }}
-        fontWeight='bold'
-      >
-        Review
-      </Typography>
+  const handleSkillLevelChange = (skillLevel) => {
+    dispatch(setSkillLevel(skillLabels.indexOf(skillLevel)));
+  };
 
-      {userSettings.dietaryRestrictions.length > 0 && (
+  return (
+    <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
+      <Stack direction='column' justifyContent='center' alignItems='flex-start'>
+        <Typography
+          variant='h5'
+          align='center'
+          sx={{ margin: '0 1rem 1rem 1rem' }}
+          fontWeight='bold'
+        >
+          Review
+        </Typography>
+
         <ReviewSection
           variable='Dietary Restrictions'
           values={userSettings.dietaryRestrictions}
           handleRemove={handleRemoveDietaryRestriction}
         />
-      )}
 
-      {userSettings.allergies.length > 0 && (
         <ReviewSection
           variable='Allergies'
           values={userSettings.allergies}
           handleRemove={handleRemoveAllergy}
         />
-      )}
 
-      <Typography
-        variant='h6'
-        align='center'
-        fontWeight='bold'
-        sx={{ m: '1rem 0 0 1rem' }}
-      >
-        Cooking Skill
-      </Typography>
+        <Stack
+          direction='column'
+          justifyContent='center'
+          alignItems='flex-start'
+          sx={{ p: '1rem', pt: 0, width: '100%' }}
+        >
+          <Typography variant='h6' align='center' fontWeight='bold'>
+            Cooking Skill
+          </Typography>
+          <Selector
+            labels={skillLabels}
+            value={skillLabels[userSettings.skillLevel]}
+            handleChange={handleSkillLevelChange}
+          />
+        </Stack>
 
-      {userSettings.cookingEquipment.length > 0 && (
         <ReviewSection
           variable='Cooking Equipment'
           values={userSettings.cookingEquipment}
           handleRemove={handleRemoveCookingEquipment}
         />
-      )}
 
-      <Typography
-        variant='h6'
-        align='center'
-        fontWeight='bold'
-        sx={{ m: '1rem 0 0 1rem' }}
-      >
-        Number of Portions
-      </Typography>
-      <Selector
-        labels={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        value={userSettings.portionSize}
-        handleChange={handlePortionSizeChange}
-      />
-    </Stack>
+        <Stack
+          direction='column'
+          justifyContent='center'
+          alignItems='flex-start'
+          sx={{ p: '1rem', pt: 0, width: '100%' }}
+        >
+          <Typography variant='h6' align='center' fontWeight='bold'>
+            Number of Portions
+          </Typography>
+          <Selector
+            labels={portionLabels}
+            value={userSettings.portionSize}
+            handleChange={handlePortionSizeChange}
+          />
+        </Stack>
+
+        <Button
+          sx={{ backgroundColor: 'secondary.dark', color: 'primary.light' }}
+        >
+          <Typography variant='body1'>Save</Typography>
+        </Button>
+      </Stack>
+    </Box>
   );
 };
 
