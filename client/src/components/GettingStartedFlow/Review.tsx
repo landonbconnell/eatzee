@@ -6,8 +6,10 @@ import {
   removeAllergy,
   removeDietaryRestriction,
   removeCookingEquipment,
+  setPortionSize,
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
+import Selector from 'components/misc/Selector';
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -25,12 +27,16 @@ const Review = () => {
     dispatch(removeCookingEquipment(cookingEquipment));
   };
 
+  const handlePortionSizeChange = (portionSize) => {
+    dispatch(setPortionSize(portionSize));
+  };
+
   return (
     <Stack direction='column' justifyContent='center' alignItems='flex-start'>
       <Typography
         variant='h5'
         align='center'
-        sx={{ margin: '0 1rem 0 1rem' }}
+        sx={{ margin: '0 1rem 1rem 1rem' }}
         fontWeight='bold'
       >
         Review
@@ -60,9 +66,6 @@ const Review = () => {
       >
         Cooking Skill
       </Typography>
-      <Typography variant='body1' align='center'>
-        {userSettings.skillLevel}
-      </Typography>
 
       {userSettings.cookingEquipment.length > 0 && (
         <ReviewSection
@@ -71,6 +74,20 @@ const Review = () => {
           handleRemove={handleRemoveCookingEquipment}
         />
       )}
+
+      <Typography
+        variant='h6'
+        align='center'
+        fontWeight='bold'
+        sx={{ m: '1rem 0 0 1rem' }}
+      >
+        Number of Portions
+      </Typography>
+      <Selector
+        labels={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        value={userSettings.portionSize}
+        handleChange={handlePortionSizeChange}
+      />
     </Stack>
   );
 };

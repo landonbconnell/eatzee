@@ -4,7 +4,7 @@ import {
   CookingEquipment,
   DietaryRestrictions,
 } from 'models/user/enums';
-import { Stack, Typography, IconButton } from '@mui/material';
+import { Stack, Typography, IconButton, Box } from '@mui/material';
 import Close from '@mui/icons-material/Close';
 
 interface ReviewSectionProps {
@@ -19,12 +19,17 @@ const ReviewSection = ({
   handleRemove,
 }: ReviewSectionProps) => {
   return (
-    <>
+    <Stack
+      direction='column'
+      alignItems='flex-start'
+      justifyContent='center'
+      sx={{ width: '100%', pb: '1rem' }}
+    >
       <Typography
         variant='h6'
         align='center'
         fontWeight='bold'
-        sx={{ m: '1rem 0 0 1rem' }}
+        sx={{ ml: '1rem' }}
       >
         {variable}
       </Typography>
@@ -47,7 +52,7 @@ const ReviewSection = ({
           </IconButton>
         </Stack>
       ))}
-    </>
+    </Stack>
   );
 };
 
