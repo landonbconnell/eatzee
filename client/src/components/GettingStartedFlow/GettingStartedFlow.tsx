@@ -13,10 +13,10 @@ import Review from './Review';
 
 const GettingStartedFlowSteps = [
   <GettingStarted />,
-  <Diet />,
-  <Allergies />,
   <CookingSkill />,
   <CookingEquipment />,
+  <Diet />,
+  <Allergies />,
   <Review />,
 ];
 

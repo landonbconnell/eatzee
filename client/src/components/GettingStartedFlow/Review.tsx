@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSettingsSelector } from 'redux/selectors/userSliceSelectors';
 import {
@@ -10,6 +10,7 @@ import {
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
 import Selector from 'components/misc/Selector';
+import StyledButton from 'components/misc/StyledButton';
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -49,18 +50,6 @@ const Review = () => {
           Review
         </Typography>
 
-        <ReviewSection
-          variable='Dietary Restrictions'
-          values={userSettings.dietaryRestrictions}
-          handleRemove={handleRemoveDietaryRestriction}
-        />
-
-        <ReviewSection
-          variable='Allergies'
-          values={userSettings.allergies}
-          handleRemove={handleRemoveAllergy}
-        />
-
         <Stack
           direction='column'
           justifyContent='center'
@@ -83,15 +72,19 @@ const Review = () => {
           handleRemove={handleRemoveCookingEquipment}
         />
 
-        <Button
-          sx={{
-            backgroundColor: 'secondary.dark',
-            color: 'primary.light',
-            width: '10rem',
-          }}
-        >
-          <Typography variant='body1'>Save</Typography>
-        </Button>
+        <ReviewSection
+          variable='Dietary Restrictions'
+          values={userSettings.dietaryRestrictions}
+          handleRemove={handleRemoveDietaryRestriction}
+        />
+
+        <ReviewSection
+          variable='Allergies'
+          values={userSettings.allergies}
+          handleRemove={handleRemoveAllergy}
+        />
+
+        <StyledButton label='save' width='10rem' onClick={() => {}} />
       </Stack>
     </Box>
   );
