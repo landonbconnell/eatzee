@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Stack, Typography, Grid } from '@mui/material';
 import CheckBoxes from './CheckBoxes';
 import SeeMoreButton from './SeeMoreButton';
-import { useDispatch } from 'react-redux';
 
 interface CheckBoxStepProps {
   headerText: string;
@@ -21,8 +20,6 @@ const CheckBoxStep = ({
   setVisible,
   handleChange,
 }: CheckBoxStepProps) => {
-  const dispatch = useDispatch();
-
   return (
     <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
       <Stack direction='column' justifyContent='center' alignItems='center'>
