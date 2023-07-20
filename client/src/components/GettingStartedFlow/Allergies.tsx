@@ -22,7 +22,7 @@ const Allergies = () => {
 
   return (
     <CheckBoxStep
-      headerText='Allergies'
+      headerText='Do you have any allergies?'
       values={allergies}
       selectedValues={selectedAllergies}
       visible={allergiesVisible}

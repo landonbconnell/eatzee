@@ -8,6 +8,8 @@ import {
 
 // create another enum for Dietary Restrictions, but
 export interface UserState {
+  username?: string;
+  id?: string;
   dietaryRestrictions: DietaryRestrictions[];
   allergies: Allergies[];
   skillLevel: number;
@@ -15,6 +17,8 @@ export interface UserState {
 }
 
 const initialState: UserState = {
+  username: undefined,
+  id: undefined,
   dietaryRestrictions: [],
   allergies: [],
   skillLevel: 1,
@@ -25,6 +29,12 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload;
+    },
+    setId: (state, action: PayloadAction<string>) => {
+      state.id = action.payload;
+    },
     addDietaryRestriction: (
       state,
       action: PayloadAction<DietaryRestrictions>

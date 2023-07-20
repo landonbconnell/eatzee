@@ -57,9 +57,11 @@ const SignUp = () => {
             password,
           })
           .then((res) => {
+            console.log(res);
             navigate('/');
           })
           .catch((err) => {
+            console.log(err);
             const errors = err.response.data.errors;
 
             errors.forEach((error) => {

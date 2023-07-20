@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@mui/material';
 import StyledButton from 'components/misc/StyledButton';
 
 const SeeMoreButton = ({ visible, setVisible, revealNum }) => {

@@ -25,7 +25,7 @@ const Diet = () => {
 
   return (
     <CheckBoxStep
-      headerText='Dietary Restrictions'
+      headerText='Do you have any dietary restrictions?'
       values={dietaryRestrictions}
       selectedValues={selectedDietaryRestrictions}
       visible={dietaryVisible}
