@@ -4,6 +4,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SignUpField from './SignUpField';
 import { useTheme } from '@mui/system';
+import { useDispatch } from 'react-redux';
+import {
+  setId,
+  setUsername as setReduxUsername,
+} from 'redux/reducers/userSlice';
 
 const SignUp = () => {
   const theme = useTheme();
@@ -30,6 +35,7 @@ const SignUp = () => {
     },
   };
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -57,11 +63,12 @@ const SignUp = () => {
             password,
           })
           .then((res) => {
-            console.log(res);
-            navigate('/');
+            const data = res.data;
+            dispatch(setId(data._id));
+            dispatch(setReduxUsername(data.username));
+            navigate('/getting-started');
           })
           .catch((err) => {
-            console.log(err);
             const errors = err.response.data.errors;
 
             errors.forEach((error) => {
