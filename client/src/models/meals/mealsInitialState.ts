@@ -9,6 +9,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -17,6 +18,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -25,6 +27,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -33,6 +36,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -41,6 +45,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -49,6 +54,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
   {
@@ -57,6 +63,7 @@ export const initialDays: Day[] = [
     time: 2,
     budget: 2,
     food_mood: 2,
+    portion_size: 2,
     skill_level: 2,
   },
 ];

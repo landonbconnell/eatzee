@@ -16,6 +16,37 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  data: {
+    type: Object,
+    required: false,
+    properties: {
+      dietaryRestrictions: {
+        type: Array,
+        required: false,
+        items: {
+          type: String,
+        },
+      },
+      allergies: {
+        type: Array,
+        required: false,
+        items: {
+          type: String,
+        },
+      },
+      skillLevel: {
+        type: String,
+        required: false,
+      },
+      equipment: {
+        type: Array,
+        required: false,
+        items: {
+          type: String,
+        },
+      },
+    },
+  },
 });
 
 UserSchema.pre('save', async function (next) {

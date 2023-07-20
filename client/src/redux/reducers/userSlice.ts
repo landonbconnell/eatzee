@@ -12,7 +12,6 @@ export interface UserState {
   allergies: Allergies[];
   skillLevel: number;
   cookingEquipment: CookingEquipment[];
-  portionSize: number;
 }
 
 const initialState: UserState = {
@@ -20,7 +19,6 @@ const initialState: UserState = {
   allergies: [],
   skillLevel: 1,
   cookingEquipment: [],
-  portionSize: 1,
 };
 
 export const userSlice = createSlice({
@@ -66,9 +64,6 @@ export const userSlice = createSlice({
         (equipment) => action.payload !== equipment
       );
     },
-    setPortionSize: (state, action: PayloadAction<number>) => {
-      state.portionSize = action.payload;
-    },
   },
 });
 
@@ -82,7 +77,6 @@ export const {
   setSkillLevel,
   addCookingEquipment,
   removeCookingEquipment,
-  setPortionSize,
 } = userSlice.actions;
 
 export default userSlice.reducer;

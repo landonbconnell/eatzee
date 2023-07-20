@@ -6,5 +6,6 @@ export interface Day {
   time: number;
   budget: number;
   food_mood: number;
+  portion_size: number;
   skill_level: number;
 }

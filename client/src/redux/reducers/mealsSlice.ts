@@ -84,6 +84,10 @@ export const mealsSlice = createSlice({
         mealToPropString(state.currentMeal)
       ].cuisines.filter((cuisine) => cuisine !== newCuisine);
     },
+    setPortionSize: (state, action: PayloadAction<number>) => {
+      state.meals[mealToPropString(state.currentMeal)].portion_size =
+        action.payload;
+    },
   },
 });
 
@@ -95,6 +99,7 @@ export const {
   updateWeekVariable,
   addCuisine,
   removeCuisine,
+  setPortionSize,
 } = mealsSlice.actions;
 
 export default mealsSlice.reducer;

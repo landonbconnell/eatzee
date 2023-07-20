@@ -6,7 +6,6 @@ import {
   removeAllergy,
   removeDietaryRestriction,
   removeCookingEquipment,
-  setPortionSize,
   setSkillLevel,
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
@@ -33,10 +32,6 @@ const Review = () => {
 
   const handleRemoveCookingEquipment = (cookingEquipment) => {
     dispatch(removeCookingEquipment(cookingEquipment));
-  };
-
-  const handlePortionSizeChange = (portionSize) => {
-    dispatch(setPortionSize(portionSize));
   };
 
   const handleSkillLevelChange = (skillLevel) => {
@@ -88,22 +83,6 @@ const Review = () => {
           values={userSettings.cookingEquipment}
           handleRemove={handleRemoveCookingEquipment}
         />
-
-        <Stack
-          direction='column'
-          justifyContent='center'
-          alignItems='flex-start'
-          sx={{ p: '1rem', pt: 0, width: '100%' }}
-        >
-          <Typography variant='h6' align='center' fontWeight='bold'>
-            Number of Portions
-          </Typography>
-          <Selector
-            labels={portionLabels}
-            value={userSettings.portionSize}
-            handleChange={handlePortionSizeChange}
-          />
-        </Stack>
 
         <Button
           sx={{ backgroundColor: 'secondary.dark', color: 'primary.light' }}

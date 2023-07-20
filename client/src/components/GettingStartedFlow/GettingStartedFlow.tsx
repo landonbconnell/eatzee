@@ -8,7 +8,6 @@ import CenterBox from 'components/misc/CenterBox';
 import DietAndAllergies from './DietAndAllergies';
 import CookingSkill from './CookingSkill';
 import CookingEquipment from './CookingEquipment';
-import PortionSizes from './PortionSizes';
 import Review from './Review';
 
 const GettingStartedFlowSteps = [
@@ -16,7 +15,6 @@ const GettingStartedFlowSteps = [
   <DietAndAllergies />,
   <CookingSkill />,
   <CookingEquipment />,
-  <PortionSizes />,
   <Review />,
 ];
 
@@ -71,7 +69,7 @@ const GettingStartedFlow = () => {
         {GettingStartedFlowSteps[activeStep]}
         <MobileStepper
           variant='dots'
-          steps={6}
+          steps={5}
           position='static'
           activeStep={activeStep}
           sx={{
