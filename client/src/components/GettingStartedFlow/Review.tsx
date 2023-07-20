@@ -15,7 +15,6 @@ const Review = () => {
   const dispatch = useDispatch();
   const userSettings = useSelector(userSettingsSelector);
 
-  const portionLabels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const skillLabels = [
     'I can barely boil water',
     'I can follow a recipe',
@@ -40,7 +39,7 @@ const Review = () => {
 
   return (
     <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
-      <Stack direction='column' justifyContent='center' alignItems='flex-start'>
+      <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
           align='center'
@@ -66,7 +65,7 @@ const Review = () => {
           direction='column'
           justifyContent='center'
           alignItems='flex-start'
-          sx={{ p: '1rem', pt: 0, width: '100%' }}
+          sx={{ p: '0 1rem 1.5rem 1rem', width: '100%' }}
         >
           <Typography variant='h6' align='center' fontWeight='bold'>
             Cooking Skill
@@ -85,7 +84,11 @@ const Review = () => {
         />
 
         <Button
-          sx={{ backgroundColor: 'secondary.dark', color: 'primary.light' }}
+          sx={{
+            backgroundColor: 'secondary.dark',
+            color: 'primary.light',
+            width: '10rem',
+          }}
         >
           <Typography variant='body1'>Save</Typography>
         </Button>

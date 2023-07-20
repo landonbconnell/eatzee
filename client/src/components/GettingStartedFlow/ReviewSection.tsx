@@ -23,7 +23,7 @@ const ReviewSection = ({
       direction='column'
       alignItems='flex-start'
       justifyContent='center'
-      sx={{ width: '100%', pb: '1rem' }}
+      sx={{ width: '100%', pb: '1.5rem' }}
     >
       <Typography
         variant='h6'

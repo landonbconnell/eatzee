@@ -82,7 +82,7 @@ const GettingStartedFlow = () => {
             },
           }}
           nextButton={
-            <ArrowButton onClick={handleNext} disabled={activeStep === 5}>
+            <ArrowButton onClick={handleNext} disabled={activeStep === 4}>
               Next
               <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
             </ArrowButton>

@@ -14,7 +14,7 @@ const CookingEquipment = () => {
   const equipment = Object.values(Equipment);
   const selectedCookingEquipment = useSelector(cookingEquipmentSelector);
   const dispatch = useDispatch();
-  const [equipmentVisible, setEquipmentVisible] = useState(12);
+  const [equipmentVisible, setEquipmentVisible] = useState(8);
 
   const handleCheck = (event) => {
     if (event.target.checked) {
