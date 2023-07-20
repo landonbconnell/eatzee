@@ -4,14 +4,11 @@ import {
   addCookingEquipment,
   removeCookingEquipment,
 } from 'redux/reducers/userSlice';
-import { Box, Stack, Grid, Typography } from '@mui/material';
 import { CookingEquipment as Equipment } from 'models/user/enums';
 import { cookingEquipmentSelector } from 'redux/selectors/userSliceSelectors';
-import CheckBoxes from './CheckBoxes';
-import SeeMoreButton from './SeeMoreButton';
+import CheckBoxStep from './CheckBoxStep';
 
 const CookingEquipment = () => {
-  const equipment = Object.values(Equipment);
   const selectedCookingEquipment = useSelector(cookingEquipmentSelector);
   const dispatch = useDispatch();
   const [equipmentVisible, setEquipmentVisible] = useState(8);
@@ -24,36 +21,17 @@ const CookingEquipment = () => {
     }
   };
 
+  const equipment = Object.values(Equipment);
+
   return (
-    <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
-      <Stack direction='column' justifyContent='center' alignItems='center'>
-        <Typography
-          variant='h5'
-          align='center'
-          sx={{ fontWeight: 'bold', margin: '0 1rem 0 1rem' }}
-        >
-          What cooking equipment do you have?
-        </Typography>
-        <Grid container sx={{ margin: '1rem 0 1rem 0' }}>
-          {equipment.slice(0, equipmentVisible).map((equipment, index) => (
-            <CheckBoxes
-              key={index}
-              name={equipment}
-              index={index}
-              onChange={handleCheck}
-              checked={selectedCookingEquipment.includes(equipment)}
-            />
-          ))}
-        </Grid>
-        {equipmentVisible < equipment.length && (
-          <SeeMoreButton
-            visible={equipmentVisible}
-            setVisible={setEquipmentVisible}
-            revealNum={6}
-          />
-        )}
-      </Stack>
-    </Box>
+    <CheckBoxStep
+      headerText='What cooking equipment do you have?'
+      values={equipment}
+      selectedValues={selectedCookingEquipment}
+      visible={equipmentVisible}
+      setVisible={setEquipmentVisible}
+      handleChange={handleCheck}
+    />
   );
 };
 

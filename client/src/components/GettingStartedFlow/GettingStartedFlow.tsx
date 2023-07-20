@@ -5,14 +5,16 @@ import { Button } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import GettingStarted from './GettingStarted';
 import CenterBox from 'components/misc/CenterBox';
-import DietAndAllergies from './DietAndAllergies';
+import Diet from './Diet';
+import Allergies from './Allergies';
 import CookingSkill from './CookingSkill';
 import CookingEquipment from './CookingEquipment';
 import Review from './Review';
 
 const GettingStartedFlowSteps = [
   <GettingStarted />,
-  <DietAndAllergies />,
+  <Diet />,
+  <Allergies />,
   <CookingSkill />,
   <CookingEquipment />,
   <Review />,
@@ -69,7 +71,7 @@ const GettingStartedFlow = () => {
         {GettingStartedFlowSteps[activeStep]}
         <MobileStepper
           variant='dots'
-          steps={5}
+          steps={6}
           position='static'
           activeStep={activeStep}
           sx={{
@@ -82,7 +84,7 @@ const GettingStartedFlow = () => {
             },
           }}
           nextButton={
-            <ArrowButton onClick={handleNext} disabled={activeStep === 4}>
+            <ArrowButton onClick={handleNext} disabled={activeStep === 5}>
               Next
               <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
             </ArrowButton>
