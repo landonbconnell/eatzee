@@ -30,11 +30,18 @@ import {
 } from 'redux/selectors/userSliceSelectors';
 import NumberSelector from 'components/misc/NumberSelector';
 import { generateMealPlan, generateMealPlanParams } from 'api/user';
+import {
+  mealNumToString,
+  budgetNumToString,
+  foodMoodNumToString,
+  timeNumToString,
+} from 'utils/variableNumToString';
 
 const MealWeekEdit = () => {
   const id = useSelector(idSelector);
   const selectedCuisines = useSelector(cuisinesSelector);
   const currentMeal = useSelector(currentMealSelector);
+  const cuisines = useSelector(cuisinesSelector);
   const portions = useSelector(portionSizeSelector);
   const days = useSelector(daysSelector);
   const dispatch = useDispatch();
@@ -68,10 +75,12 @@ const MealWeekEdit = () => {
   };
 
   const handleGenerateMealPlans = async () => {
+    const { time, budget, food_mood, portion_size } = days[0];
+
     const data: generateMealPlanParams = {
       id: id,
       data: {
-        currentMeal,
+        currentMeal: mealNumToString(currentMeal),
         weekdays: [
           'Monday',
           'Tuesday',
@@ -81,11 +90,11 @@ const MealWeekEdit = () => {
           'Saturday',
           'Sunday',
         ],
-        time: days[0].time,
-        budget: days[0].budget,
-        foodMood: days[0].food_mood,
-        portions: days[0].portion_size,
-        cuisines: days[0].cuisines,
+        time: timeNumToString(time),
+        budget: budgetNumToString(budget),
+        foodMood: foodMoodNumToString(food_mood),
+        portions: portion_size, // undoes the +1 from zero-indexing
+        cuisines,
       },
     };
 

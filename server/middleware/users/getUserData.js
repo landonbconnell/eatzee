@@ -1,19 +1,23 @@
 const User = require("../../models/userSchema");
+const { skillLevelNumToString } = require("../../utils/skillLevelNumToString");
 
 const getUserData = async (req, res, next) => {
   const user = await User.findById(req.body.id);
+  const { dietaryRestrictions, allergies, skillLevel, cookingEquipment } =
+    user.data;
 
-  console.log("user", user);
-
-  const { dietaryRestrictions, allergies, skillLevel, cookingEquipment } = user;
-
-  req.body = {
+  newBody = {
     ...req.body,
-    dietaryRestrictions,
-    allergies,
-    skillLevel,
-    cookingEquipment,
+    data: {
+      ...req.body.data,
+      dietaryRestrictions,
+      allergies,
+      skillLevel: skillLevelNumToString(skillLevel),
+      cookingEquipment,
+    },
   };
+
+  req.body = newBody;
   next();
 };
 

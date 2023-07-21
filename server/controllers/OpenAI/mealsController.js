@@ -27,18 +27,20 @@ const mixCuisines = (cuisines) => {
 };
 
 const generateMealPlan = async (req, res) => {
+  console.log(req.body.data);
+
   const {
     dietaryRestrictions,
     currentMeal,
     allergies,
     skillLevel,
-    equipment,
+    cookingEquipment, //undefined
     portions,
     time,
     budget,
     foodMood,
-    cuisines,
-  } = req.body;
+    cuisines, //undefined
+  } = req.body.data;
 
   let prompt = `I'm looking for a weekly ${arrayToString(
     dietaryRestrictions
@@ -49,7 +51,7 @@ const generateMealPlan = async (req, res) => {
   }
 
   prompt += `. I'm a ${skillLevel} cook and have access to a ${arrayToString(
-    equipment
+    cookingEquipment
   )}. The plan should feed ${portions} people and the meals should take no more than ${time} to prepare. I'm on a ${budget} budget and I'm aiming for a ${foodMood} level of healthiness. `;
 
   if (cuisines.length > 0) {

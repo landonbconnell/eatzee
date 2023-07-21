@@ -19,8 +19,8 @@ export interface generateMealPlanParams {
   data: {
     currentMeal: string;
     weekdays: string[];
-    time: number;
-    budget: number;
+    time: string;
+    budget: string;
     foodMood: string;
     cuisines: string[];
     portions: number;

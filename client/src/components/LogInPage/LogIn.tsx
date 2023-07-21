@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setAccessToken } from 'redux/reducers/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/system';
 import LogInField from './LogInField';
