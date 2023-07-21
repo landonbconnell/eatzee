@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   generateMealPlan,
 } = require("../controllers/OpenAI/mealsController.js");
+const { getUserData } = require("../middleware/users/getUserData.js");
 
-router.post("/generateMealPlan", generateMealPlan);
+router.post("/generateMealPlan", getUserData, generateMealPlan);
 
 module.exports = router;
