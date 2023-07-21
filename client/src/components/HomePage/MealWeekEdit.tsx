@@ -70,6 +70,7 @@ const MealWeekEdit = () => {
       <Grid container direction='row' spacing={5}>
         <Grid
           item
+          container
           xs={isSmall ? 12 : 6}
           direction='column'
           justifyContent='space-evenly'
@@ -87,6 +88,7 @@ const MealWeekEdit = () => {
 
         <Grid item xs={isSmall ? 12 : 6}>
           <Grid
+            item
             container
             direction='row'
             justifyContent='center'

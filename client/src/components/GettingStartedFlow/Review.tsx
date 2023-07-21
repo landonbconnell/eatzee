@@ -11,8 +11,11 @@ import {
 import ReviewSection from './ReviewSection';
 import Selector from 'components/misc/Selector';
 import StyledButton from 'components/misc/StyledButton';
+import { updateUserData } from 'api/user';
+import { useNavigate } from 'react-router-dom';
 
 const Review = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSettings = useSelector(userSettingsSelector);
 
@@ -36,6 +39,22 @@ const Review = () => {
 
   const handleSkillLevelChange = (skillLevel) => {
     dispatch(setSkillLevel(skillLabels.indexOf(skillLevel)));
+  };
+
+  const handleSave = () => {
+    const data = {
+      id: userSettings.id,
+      data: {
+        dietaryRestrictions: userSettings.dietaryRestrictions,
+        allergies: userSettings.allergies,
+        skillLevel: userSettings.skillLevel,
+        cookingEquipment: userSettings.cookingEquipment,
+      },
+    };
+
+    updateUserData(data)
+      .then(() => navigate('/home'))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -84,7 +103,7 @@ const Review = () => {
           handleRemove={handleRemoveAllergy}
         />
 
-        <StyledButton label='save' width='10rem' onClick={() => {}} />
+        <StyledButton label='save' width='10rem' onClick={handleSave} />
       </Stack>
     </Box>
   );
