@@ -13,17 +13,28 @@ import {
   removeCuisine,
   updateWeekVariable,
 } from 'redux/reducers/mealsSlice';
-import { cuisinesSelector } from 'redux/selectors/mealsSelector';
+import {
+  cuisinesSelector,
+  currentMealSelector,
+} from 'redux/selectors/mealsSelector';
 import { useTheme } from '@mui/system';
 import DiscreteSlider from 'components/misc/DiscreteSlider';
 import { daysSelector } from 'redux/selectors/daysSelector';
 import StyledButton from 'components/misc/StyledButton';
+import Header from './Header';
 
 const MealWeekEdit = () => {
   const selectedCuisines = useSelector(cuisinesSelector);
+  const currentMeal = useSelector(currentMealSelector);
+  const days = useSelector(daysSelector);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
   const theme = useTheme();
+  const labels = {
+    time: ['Quick', '', '', '', 'Leisurely'],
+    budget: ['$', '', '$$', '', '$$$'],
+    food_mood: ['Indulgent', '', '', '', 'Nourishing'],
+  };
 
   const mealWeekEditBoxStyles = {
     width: '100%',
@@ -53,10 +64,9 @@ const MealWeekEdit = () => {
     }
   };
 
-  const days = useSelector(daysSelector);
-
   return (
     <Box sx={mealWeekEditBoxStyles}>
+      <Header />
       <Grid
         container
         spacing={4}
@@ -74,8 +84,7 @@ const MealWeekEdit = () => {
           <DiscreteSlider
             header='Time'
             value={days[0].time}
-            startLabel='Quick'
-            endLabel='Leisurely'
+            labels={labels.time}
             onChange={(event, newValue) => {
               dispatch(
                 updateWeekVariable({
@@ -89,8 +98,7 @@ const MealWeekEdit = () => {
           <DiscreteSlider
             header='Budget'
             value={days[0].budget}
-            startLabel='$'
-            endLabel='$$$'
+            labels={labels.budget}
             onChange={(event, newValue) => {
               dispatch(
                 updateWeekVariable({
@@ -104,8 +112,7 @@ const MealWeekEdit = () => {
           <DiscreteSlider
             header='Food Mood'
             value={days[0].food_mood}
-            startLabel='Indulgent'
-            endLabel='Nourishing'
+            labels={labels.food_mood}
             onChange={(event, newValue) => {
               dispatch(
                 updateWeekVariable({
@@ -132,7 +139,6 @@ const MealWeekEdit = () => {
               direction='row'
               justifyContent='center'
               alignItems='flex-start'
-              spacing={2}
             >
               {Object.values(Cuisines).map((cuisine, index) => (
                 <Grid item xs={12} sm={6} key={index}>

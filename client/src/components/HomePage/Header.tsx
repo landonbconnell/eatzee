@@ -41,7 +41,7 @@ const Header = () => {
       direction={isMobile ? 'row' : 'column'}
       justifyContent={isMobile ? 'space-around' : 'center'}
       alignItems='center'
-      sx={{ margin: '2.5rem 0 2.5rem 0' }}
+      sx={{ marginBottom: '2rem' }}
     >
       <Typography variant='h4' sx={{ color: 'primary.contrastText' }}>
         Eatzier
@@ -66,7 +66,6 @@ const Header = () => {
           justifyContent='space-evenly'
           alignItems='center'
           spacing={5}
-          sx={{ mt: '1rem' }}
         >
           <MealTab meal={Meals.breakfast} />
           <MealTab meal={Meals.lunch} />

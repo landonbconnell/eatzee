@@ -4,16 +4,14 @@ import { Slider, Typography, Stack } from '@mui/material';
 interface DiscreteSliderProps {
   header?: string;
   value: number;
-  startLabel: string;
-  endLabel: string;
+  labels: string[];
   onChange: (event, newValue) => void;
 }
 
 const DiscreteSlider = ({
   header,
   value,
-  startLabel,
-  endLabel,
+  labels,
   onChange,
 }: DiscreteSliderProps) => {
   return (
@@ -30,11 +28,11 @@ const DiscreteSlider = ({
       )}
       <Slider
         marks={[
-          { value: 0, label: startLabel },
-          { value: 1 },
-          { value: 2 },
-          { value: 3 },
-          { value: 4, label: endLabel },
+          { value: 0, label: labels[0] },
+          { value: 1, label: labels[1] },
+          { value: 2, label: labels[2] },
+          { value: 3, label: labels[3] },
+          { value: 4, label: labels[4] },
         ]}
         defaultValue={2}
         value={value}
@@ -43,7 +41,7 @@ const DiscreteSlider = ({
         min={0}
         max={4}
         sx={{
-          margin: '1rem',
+          margin: '0 1rem 2.5rem 1rem',
           color: 'secondary.dark',
           width: '80%',
         }}

@@ -5,17 +5,13 @@ import MealWeekView from './MealWeekView';
 import MealWeekEdit from './MealWeekEdit';
 import { useSelector } from 'react-redux';
 import { editModeSelector } from 'redux/selectors/mealsSelector';
+import CenterBox from 'components/misc/CenterBox';
 
 const HomePage = () => {
   const isEditMode = useSelector(editModeSelector);
 
   return (
-    <Stack direction='column'>
-      <Header />
-      <Stack direction='row' justifyContent='center' alignItems='center'>
-        {isEditMode ? <MealWeekEdit /> : <MealWeekView />}
-      </Stack>
-    </Stack>
+    <CenterBox>{isEditMode ? <MealWeekEdit /> : <MealWeekView />}</CenterBox>
   );
 };
 
