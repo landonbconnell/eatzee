@@ -42,7 +42,7 @@ const MealWeekEdit = () => {
   const selectedCuisines = useSelector(cuisinesSelector);
   const currentMeal = useSelector(currentMealSelector);
   const cuisines = useSelector(cuisinesSelector);
-  const portions = useSelector(portionSizeSelector);
+  const portions = useSelector(portionSizeSelector) || 1;
   const days = useSelector(daysSelector);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
