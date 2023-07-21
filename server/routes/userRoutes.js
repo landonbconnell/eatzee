@@ -5,6 +5,7 @@ const {
   login,
   logout,
   registerNewUser,
+  updateUserData,
 } = require('../controllers/userController.js');
 const {
   registerValidators,
@@ -23,5 +24,7 @@ router.post('/register', registerValidators, registerLimiter, (req, res) => {
   }
   registerNewUser(req, res);
 });
+
+router.put('/update', updateUserData);
 
 module.exports = router;
