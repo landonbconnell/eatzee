@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Checkbox,
   FormControlLabel,
   Grid,
-  Button,
   useMediaQuery,
 } from '@mui/material';
-import WeekVariableStepper from './WeekVariableStepper';
 import { Variables, Cuisines } from 'models/meals/enums';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCuisine, removeCuisine } from 'redux/reducers/mealsSlice';
+import {
+  addCuisine,
+  removeCuisine,
+  updateWeekVariable,
+} from 'redux/reducers/mealsSlice';
 import { cuisinesSelector } from 'redux/selectors/mealsSelector';
 import { useTheme } from '@mui/system';
+import DiscreteSlider from 'components/misc/DiscreteSlider';
+import { daysSelector } from 'redux/selectors/daysSelector';
+import StyledButton from 'components/misc/StyledButton';
 
 const MealWeekEdit = () => {
-  const [cuisinesVisible, setCuisinesVisible] = useState(12);
   const selectedCuisines = useSelector(cuisinesSelector);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
@@ -34,7 +38,7 @@ const MealWeekEdit = () => {
     mt: 2,
     mb: 2,
     [theme.breakpoints.down(840)]: {
-      minWidth: '20rem',
+      minWidth: '16rem',
       maxWidth: '30rem',
       padding: '1rem',
       borderRadius: '1.5rem',
@@ -49,56 +53,89 @@ const MealWeekEdit = () => {
     }
   };
 
-  const handleShowMore = () => {
-    setCuisinesVisible((prevValue) => prevValue + 6);
-  };
-
-  const labels = [
-    ["I'm hungry now", '', "I'm in no rush", '', 'I have all day'],
-    ['$', '', '$$', '', '$$$'],
-    [
-      "I'm feeling indulgent",
-      '',
-      'I want balanced meals',
-      '',
-      'I want something nourishing',
-    ],
-  ];
+  const days = useSelector(daysSelector);
 
   return (
     <Box sx={mealWeekEditBoxStyles}>
-      <Grid container direction='row' spacing={5}>
+      <Grid
+        container
+        spacing={4}
+        direction={isSmall ? 'column' : 'row'} // dynamically set the direction
+      >
         <Grid
           item
           container
-          xs={isSmall ? 12 : 6}
+          xs={12}
+          sm={6} // make the Grid item take up half the space on screens larger than 'sm'
           direction='column'
-          justifyContent='space-evenly'
+          justifyContent='space-between'
           alignItems='center'
-          paddingLeft='2rem'
-          paddingRight='2rem'
         >
-          <WeekVariableStepper variable={Variables.time} labels={labels[0]} />
-          <WeekVariableStepper variable={Variables.budget} labels={labels[1]} />
-          <WeekVariableStepper
-            variable={Variables.food_mood}
-            labels={labels[2]}
+          <DiscreteSlider
+            header='Time'
+            value={days[0].time}
+            startLabel='Quick'
+            endLabel='Leisurely'
+            onChange={(event, newValue) => {
+              dispatch(
+                updateWeekVariable({
+                  variable: Variables.time,
+                  value: newValue,
+                })
+              );
+            }}
+          />
+
+          <DiscreteSlider
+            header='Budget'
+            value={days[0].budget}
+            startLabel='$'
+            endLabel='$$$'
+            onChange={(event, newValue) => {
+              dispatch(
+                updateWeekVariable({
+                  variable: Variables.budget,
+                  value: newValue,
+                })
+              );
+            }}
+          />
+
+          <DiscreteSlider
+            header='Food Mood'
+            value={days[0].food_mood}
+            startLabel='Indulgent'
+            endLabel='Nourishing'
+            onChange={(event, newValue) => {
+              dispatch(
+                updateWeekVariable({
+                  variable: Variables.food_mood,
+                  value: newValue,
+                })
+              );
+            }}
           />
         </Grid>
 
-        <Grid item xs={isSmall ? 12 : 6}>
-          <Grid
-            item
-            container
-            direction='row'
-            justifyContent='center'
-            alignItems='flex-start'
-            spacing={2}
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              maxHeight: '20rem', // adjust to control the maximum height of the scrollable area
+              overflowY: 'auto', // makes the Box scrollable
+              width: '100%',
+              marginBottom: '1rem',
+            }}
           >
-            {Object.values(Cuisines)
-              .slice(0, cuisinesVisible)
-              .map((cuisine, index) => (
-                <Grid item xs={6} key={index}>
+            <Grid
+              item
+              container
+              direction='row'
+              justifyContent='center'
+              alignItems='flex-start'
+              spacing={2}
+            >
+              {Object.values(Cuisines).map((cuisine, index) => (
+                <Grid item xs={12} sm={6} key={index}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -116,12 +153,23 @@ const MealWeekEdit = () => {
                   />
                 </Grid>
               ))}
-          </Grid>
-          <Button onClick={handleShowMore} variant='contained' color='primary'>
-            Show more
-          </Button>
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '1rem',
+        }}
+      >
+        <StyledButton
+          label='Generate Meal Plan'
+          width='12rem'
+          onClick={() => {}}
+        />
+      </Box>
     </Box>
   );
 };
