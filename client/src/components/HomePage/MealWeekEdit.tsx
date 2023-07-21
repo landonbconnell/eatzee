@@ -4,6 +4,7 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
 import { Variables, Cuisines } from 'models/meals/enums';
@@ -11,21 +12,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addCuisine,
   removeCuisine,
+  setPortionSize,
   updateWeekVariable,
 } from 'redux/reducers/mealsSlice';
-import {
-  cuisinesSelector,
-  currentMealSelector,
-} from 'redux/selectors/mealsSelector';
+import { cuisinesSelector } from 'redux/selectors/mealsSelector';
+import { daysSelector } from 'redux/selectors/daysSelector';
 import { useTheme } from '@mui/system';
 import DiscreteSlider from 'components/misc/DiscreteSlider';
-import { daysSelector } from 'redux/selectors/daysSelector';
 import StyledButton from 'components/misc/StyledButton';
 import Header from './Header';
+import { portionSizeSelector } from 'redux/selectors/userSliceSelectors';
+import NumberSelector from 'components/misc/NumberSelector';
 
 const MealWeekEdit = () => {
   const selectedCuisines = useSelector(cuisinesSelector);
-  const currentMeal = useSelector(currentMealSelector);
+  const portions = useSelector(portionSizeSelector);
   const days = useSelector(daysSelector);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
@@ -34,6 +35,7 @@ const MealWeekEdit = () => {
     time: ['Quick', '', '', '', 'Leisurely'],
     budget: ['$', '', '$$', '', '$$$'],
     food_mood: ['Indulgent', '', '', '', 'Nourishing'],
+    portions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   };
 
   const mealWeekEditBoxStyles = {
@@ -78,9 +80,19 @@ const MealWeekEdit = () => {
           xs={12}
           sm={6} // make the Grid item take up half the space on screens larger than 'sm'
           direction='column'
-          justifyContent='space-between'
+          justifyContent='space-evenly'
           alignItems='center'
         >
+          <NumberSelector
+            header='Portions'
+            width='15rem'
+            labels={labels.portions}
+            value={portions}
+            handleChange={(newPortionSize) =>
+              dispatch(setPortionSize(newPortionSize))
+            }
+          />
+
           <DiscreteSlider
             header='Time'
             value={days[0].time}
@@ -125,9 +137,16 @@ const MealWeekEdit = () => {
         </Grid>
 
         <Grid item xs={12} sm={6}>
+          <Typography
+            variant='h6'
+            align='center'
+            sx={{ fontWeight: 'bold', marginBottom: '1rem' }}
+          >
+            World Cuisines
+          </Typography>
           <Box
             sx={{
-              maxHeight: '20rem', // adjust to control the maximum height of the scrollable area
+              maxHeight: '24rem', // adjust to control the maximum height of the scrollable area
               overflowY: 'auto', // makes the Box scrollable
               width: '100%',
               marginBottom: '1rem',

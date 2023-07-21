@@ -9,10 +9,10 @@ import {
   setSkillLevel,
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
-import Selector from 'components/misc/Selector';
 import StyledButton from 'components/misc/StyledButton';
 import { updateUserData } from 'api/user';
 import { useNavigate } from 'react-router-dom';
+import StringSelector from 'components/misc/StringSelector';
 
 const Review = () => {
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const Review = () => {
           <Typography variant='h6' align='center' fontWeight='bold'>
             Cooking Skill
           </Typography>
-          <Selector
+          <StringSelector
             labels={skillLabels}
             value={skillLabels[userSettings.skillLevel]}
             handleChange={handleSkillLevelChange}

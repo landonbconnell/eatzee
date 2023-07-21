@@ -28,6 +28,7 @@ export enum Cuisines {
   Chinese = 'Chinese',
   Cuban = 'Cuban',
   Ethiopian = 'Ethiopian',
+  Filipino = 'Filipino',
   French = 'French',
   German = 'German',
   Greek = 'Greek',

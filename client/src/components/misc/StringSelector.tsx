@@ -2,12 +2,12 @@ import React from 'react';
 import { FormControl, Select, MenuItem } from '@mui/material';
 
 interface SelectorProps {
-  labels: number[] | string[];
-  value: number | string;
-  handleChange: (value: string | number) => void;
+  labels: string[];
+  value: string;
+  handleChange: (value: string) => void;
 }
 
-const Selector = ({ labels, value, handleChange }: SelectorProps) => (
+const StringSelector = ({ labels, value, handleChange }: SelectorProps) => (
   <FormControl sx={{ width: '100%' }}>
     <Select
       labelId='demo-simple-select-label'
@@ -24,4 +24,4 @@ const Selector = ({ labels, value, handleChange }: SelectorProps) => (
   </FormControl>
 );
 
-export default Selector;
+export default StringSelector;
