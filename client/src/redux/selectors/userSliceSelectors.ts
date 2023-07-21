@@ -1,3 +1,5 @@
+export const idSelector = (state) => state.user.id;
+
 export const skillLevelSelector = (state) => state.user.skillLevel;
 
 export const dietaryRestrictionsSelector = (state) =>

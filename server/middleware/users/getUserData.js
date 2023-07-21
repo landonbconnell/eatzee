@@ -1,10 +1,12 @@
-const User = require("../../models/User");
+const User = require("../../models/userSchema");
 
-export const getUserData = async (req, res, next) => {
-  const { dietaryRestrictions, allergies, skillLevel, cookingEquipment } =
-    await User.findById(req.body.id);
+const getUserData = async (req, res, next) => {
+  const user = await User.findById(req.body.id);
 
-  // add userData to req.body without overwriting existing data or creating a new property
+  console.log("user", user);
+
+  const { dietaryRestrictions, allergies, skillLevel, cookingEquipment } = user;
+
   req.body = {
     ...req.body,
     dietaryRestrictions,
@@ -14,3 +16,5 @@ export const getUserData = async (req, res, next) => {
   };
   next();
 };
+
+module.exports = { getUserData };

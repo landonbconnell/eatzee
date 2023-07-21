@@ -6,6 +6,10 @@ import { setAccessToken } from 'redux/reducers/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/system';
 import LogInField from './LogInField';
+import {
+  setId,
+  setUsername as setReduxUsername,
+} from 'redux/reducers/userSlice';
 
 const LogIn = () => {
   const theme = useTheme();
@@ -57,7 +61,9 @@ const LogIn = () => {
           password,
         })
         .then((res) => {
-          dispatch(setAccessToken(res.data.accessToken));
+          const data = res.data;
+          dispatch(setId(data.id));
+          dispatch(setReduxUsername(data.username));
           navigate('/home');
         })
         .catch((err) => {

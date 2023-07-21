@@ -46,7 +46,7 @@ const SignUp = () => {
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
   const [confirmErrors, setConfirmErrors] = useState<string[]>([]);
 
-  const handleLogin = () => {
+  const handleSignUp = () => {
     setEmailErrors([]);
     setUsernameErrors([]);
     setPasswordErrors([]);
@@ -141,7 +141,7 @@ const SignUp = () => {
 
         <Button
           variant='contained'
-          onClick={handleLogin}
+          onClick={handleSignUp}
           sx={{
             width: '12rem',
             backgroundColor: 'secondary.dark',

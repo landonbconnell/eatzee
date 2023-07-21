@@ -15,17 +15,26 @@ import {
   setPortionSize,
   updateWeekVariable,
 } from 'redux/reducers/mealsSlice';
-import { cuisinesSelector } from 'redux/selectors/mealsSelector';
+import {
+  cuisinesSelector,
+  currentMealSelector,
+} from 'redux/selectors/mealsSelector';
 import { daysSelector } from 'redux/selectors/daysSelector';
 import { useTheme } from '@mui/system';
 import DiscreteSlider from 'components/misc/DiscreteSlider';
 import StyledButton from 'components/misc/StyledButton';
 import Header from './Header';
-import { portionSizeSelector } from 'redux/selectors/userSliceSelectors';
+import {
+  idSelector,
+  portionSizeSelector,
+} from 'redux/selectors/userSliceSelectors';
 import NumberSelector from 'components/misc/NumberSelector';
+import { generateMealPlan, generateMealPlanParams } from 'api/user';
 
 const MealWeekEdit = () => {
+  const id = useSelector(idSelector);
   const selectedCuisines = useSelector(cuisinesSelector);
+  const currentMeal = useSelector(currentMealSelector);
   const portions = useSelector(portionSizeSelector);
   const days = useSelector(daysSelector);
   const dispatch = useDispatch();
@@ -56,6 +65,36 @@ const MealWeekEdit = () => {
       padding: '1rem',
       borderRadius: '1.5rem',
     },
+  };
+
+  const handleGenerateMealPlans = async () => {
+    const data: generateMealPlanParams = {
+      id: id,
+      data: {
+        currentMeal,
+        weekdays: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        time: days[0].time,
+        budget: days[0].budget,
+        foodMood: days[0].food_mood,
+        portions: days[0].portion_size,
+        cuisines: days[0].cuisines,
+      },
+    };
+
+    try {
+      const mealPlan = await generateMealPlan(data);
+      console.log(mealPlan);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleCheck = (event) => {
@@ -192,7 +231,7 @@ const MealWeekEdit = () => {
         <StyledButton
           label='Generate Meal Plan'
           width='12rem'
-          onClick={() => {}}
+          onClick={() => handleGenerateMealPlans()}
         />
       </Box>
     </Box>

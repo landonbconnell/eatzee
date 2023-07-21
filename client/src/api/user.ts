@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface updateUserDataParams {
+export interface updateUserDataParams {
   id: string;
   data: {
     dietaryRestrictions: string[];
@@ -14,7 +14,7 @@ export const updateUserData = (data: updateUserDataParams) => {
   return axios.put('http://localhost:5000/api/users/update', data);
 };
 
-interface generateMealPlanParams {
+export interface generateMealPlanParams {
   id: string;
   data: {
     currentMeal: string;
