@@ -25,6 +25,8 @@ export const variableToPropString = (variable: Variables) => {
       return 'food_mood';
     case Variables.skill_level:
       return 'skill_level';
+    case Variables.portion_size:
+      return 'portion_size';
     default:
       return '';
   }

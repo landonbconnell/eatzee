@@ -9,6 +9,7 @@ export enum Variables {
   budget,
   food_mood,
   skill_level,
+  portion_size,
 }
 
 export enum Weekdays {

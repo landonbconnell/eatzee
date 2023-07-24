@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addCuisine,
   removeCuisine,
-  setPortionSize,
   updateWeekVariable,
 } from 'redux/reducers/mealsSlice';
 import {
@@ -24,10 +23,7 @@ import { useTheme } from '@mui/system';
 import DiscreteSlider from 'components/misc/DiscreteSlider';
 import StyledButton from 'components/misc/StyledButton';
 import Header from './Header';
-import {
-  idSelector,
-  portionSizeSelector,
-} from 'redux/selectors/userSliceSelectors';
+import { idSelector } from 'redux/selectors/userSliceSelectors';
 import NumberSelector from 'components/misc/NumberSelector';
 import { generateMealPlan, generateMealPlanParams } from 'api/user';
 import {
@@ -42,7 +38,6 @@ const MealWeekEdit = () => {
   const selectedCuisines = useSelector(cuisinesSelector);
   const currentMeal = useSelector(currentMealSelector);
   const cuisines = useSelector(cuisinesSelector);
-  const portions = useSelector(portionSizeSelector) || 1;
   const days = useSelector(daysSelector);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
@@ -135,9 +130,14 @@ const MealWeekEdit = () => {
             header='Portions'
             width='15rem'
             labels={labels.portions}
-            value={portions}
+            value={days[0].portion_size}
             handleChange={(newPortionSize) =>
-              dispatch(setPortionSize(newPortionSize))
+              dispatch(
+                updateWeekVariable({
+                  variable: Variables.portion_size,
+                  value: newPortionSize,
+                })
+              )
             }
           />
 
