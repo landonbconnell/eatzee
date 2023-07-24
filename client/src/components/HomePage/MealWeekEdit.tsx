@@ -52,6 +52,7 @@ const MealWeekEdit = () => {
   const mealWeekEditBoxStyles = {
     width: '100%',
     maxWidth: '50rem',
+    maxHeight: '100rem',
     overflowY: 'auto',
     borderRadius: '2.5rem',
     boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
