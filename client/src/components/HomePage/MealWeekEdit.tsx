@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addCuisine,
   removeCuisine,
+  setDish,
+  setDayEditMode,
+  setWeekEditMode,
   updateWeekVariable,
 } from 'redux/reducers/mealsSlice';
 import {
@@ -21,7 +24,6 @@ import {
 import { daysSelector } from 'redux/selectors/daysSelector';
 import { useTheme } from '@mui/system';
 import DiscreteSlider from 'components/misc/DiscreteSlider';
-import StyledButton from 'components/misc/StyledButton';
 import Header from './Header';
 import { idSelector } from 'redux/selectors/userSliceSelectors';
 import NumberSelector from 'components/misc/NumberSelector';
@@ -32,6 +34,7 @@ import {
   foodMoodNumToString,
   timeNumToString,
 } from 'utils/variableNumToString';
+import StyledLoadingButton from 'components/misc/StyledLoadingButton';
 
 const MealWeekEdit = () => {
   const id = useSelector(idSelector);
@@ -39,6 +42,7 @@ const MealWeekEdit = () => {
   const currentMeal = useSelector(currentMealSelector);
   const cuisines = useSelector(cuisinesSelector);
   const days = useSelector(daysSelector);
+  const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useDispatch();
   const isSmall = useMediaQuery('(max-width: 840px)');
   const theme = useTheme();
@@ -95,9 +99,26 @@ const MealWeekEdit = () => {
     };
 
     try {
-      const mealPlan = await generateMealPlan(data);
+      setIsLoading(true);
+      const response = await generateMealPlan(data);
+      setIsLoading(false);
+
+      const mealPlan = response.data.days;
+      mealPlan.forEach((meal) => {
+        let weekday = meal.day;
+        let dish = {
+          name: meal.name,
+          description: meal.desc,
+          recipe: meal.recipe,
+        };
+        dispatch(setDish({ weekday, dish }));
+        dispatch(setDayEditMode({ weekday, edit: false }));
+      });
+      dispatch(setWeekEditMode({ edit: false }));
+
       console.log(mealPlan);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -238,9 +259,10 @@ const MealWeekEdit = () => {
           marginTop: '1rem',
         }}
       >
-        <StyledButton
+        <StyledLoadingButton
+          isLoading={isLoading}
           label='Generate Meal Plan'
-          width='12rem'
+          width='14rem'
           onClick={() => handleGenerateMealPlans()}
         />
       </Box>

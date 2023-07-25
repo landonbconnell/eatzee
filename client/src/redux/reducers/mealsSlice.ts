@@ -3,23 +3,25 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { mealToPropString } from 'utils/mealToString';
 import { variableToPropString } from 'utils/variableToString';
 import { Weekdays, Variables, Meals, Cuisines } from 'models/meals/enums';
-import { Day } from 'models/meals/interfaces';
+import { Day, Dish } from 'models/meals/interfaces';
 import { mealsInitialState as initialState } from 'models/meals/mealsInitialState';
 
 export interface MealsState {
-  editMode: boolean;
   currentMeal: Meals;
   meals: {
     breakfast: {
       cuisines: Cuisines[];
+      editMode: boolean;
       days: Day[];
     };
     lunch: {
       cuisines: Cuisines[];
+      editMode: boolean;
       days: Day[];
     };
     dinner: {
       cuisines: Cuisines[];
+      editMode: boolean;
       days: Day[];
     };
   };
@@ -84,6 +86,33 @@ export const mealsSlice = createSlice({
         mealToPropString(state.currentMeal)
       ].cuisines.filter((cuisine) => cuisine !== newCuisine);
     },
+    setDish: (
+      state,
+      action: PayloadAction<{
+        weekday: Weekdays;
+        dish: Dish;
+      }>
+    ) => {
+      const { weekday, dish } = action.payload;
+
+      state.meals[mealToPropString(state.currentMeal)].days.find(
+        (day: Day) => day.weekday === weekday
+      ).dish = dish;
+    },
+    setWeekEditMode: (state, action: PayloadAction<{ edit: boolean }>) => {
+      const { edit } = action.payload;
+      state.meals[mealToPropString(state.currentMeal)].editMode = edit;
+    },
+    setDayEditMode: (
+      state,
+      action: PayloadAction<{ weekday: Weekdays; edit: boolean }>
+    ) => {
+      const { weekday, edit } = action.payload;
+
+      state.meals[mealToPropString(state.currentMeal)].days.find(
+        (day: Day) => day.weekday === weekday
+      ).edit = edit;
+    },
   },
 });
 
@@ -95,6 +124,9 @@ export const {
   updateWeekVariable,
   addCuisine,
   removeCuisine,
+  setDish,
+  setWeekEditMode,
+  setDayEditMode,
 } = mealsSlice.actions;
 
 export default mealsSlice.reducer;

@@ -69,19 +69,21 @@ export const initialDays: Day[] = [
 ];
 
 export const mealsInitialState: MealsState = {
-  editMode: true,
   currentMeal: Meals.breakfast,
   meals: {
     breakfast: {
       cuisines: [],
+      editMode: true,
       days: initialDays,
     },
     lunch: {
       cuisines: [],
+      editMode: true,
       days: initialDays,
     },
     dinner: {
       cuisines: [],
+      editMode: true,
       days: initialDays,
     },
   },
