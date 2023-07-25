@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 interface LocationParams {
   'filter.zipCode.near'?: string;
   'filter.latLong.near'?: string;
@@ -14,7 +16,7 @@ interface LocationParams {
 
 export const getStoreLocations = async (params: LocationParams) => {
   const data = await axios.post(
-    'http://localhost:5000/api/kroger/locations/getLocations',
+    `${REACT_APP_API_URL}/api/kroger/locations/getLocations`,
     params
   );
   return data;

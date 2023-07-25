@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 export interface updateUserDataParams {
   id: string;
   data: {
@@ -11,7 +13,7 @@ export interface updateUserDataParams {
 }
 
 export const updateUserData = (data: updateUserDataParams) => {
-  return axios.put('http://localhost:5000/api/users/update', data);
+  return axios.put(`${REACT_APP_API_URL}/api/users/update`, data);
 };
 
 export interface generateMealPlanParams {
@@ -28,5 +30,5 @@ export interface generateMealPlanParams {
 }
 
 export const generateMealPlan = (data: generateMealPlanParams) => {
-  return axios.post('http://localhost:5000/api/openai/generateMealPlan', data);
+  return axios.post(`${REACT_APP_API_URL}/api/openai/generateMealPlan`, data);
 };

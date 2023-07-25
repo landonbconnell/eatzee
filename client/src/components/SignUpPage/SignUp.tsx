@@ -10,6 +10,8 @@ import {
   setUsername as setReduxUsername,
 } from 'redux/reducers/userSlice';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 const SignUp = () => {
   const theme = useTheme();
 
@@ -57,7 +59,7 @@ const SignUp = () => {
         setConfirmErrors(['Passwords do not match']);
       } else {
         axios
-          .post('http://localhost:5000/api/users/register', {
+          .post(`${REACT_APP_API_URL}/api/users/register`, {
             email,
             username,
             password,

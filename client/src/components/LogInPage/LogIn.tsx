@@ -10,6 +10,8 @@ import {
   setUsername as setReduxUsername,
 } from 'redux/reducers/userSlice';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 const LogIn = () => {
   const theme = useTheme();
 
@@ -55,7 +57,7 @@ const LogIn = () => {
 
     if (username && password) {
       axios
-        .post('http://localhost:5000/api/users/login', {
+        .post(`${REACT_APP_API_URL}/api/users/login`, {
           username,
           password,
         })

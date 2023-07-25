@@ -53,8 +53,6 @@ const generateMealIdeas = async (req, res, next) => {
   prompt +=
     " I'm feeling adventurous so feel free to suggest new obscure foods!";
 
-  console.log(prompt);
-
   let name = "";
   while (!name) {
     try {
