@@ -1,4 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
+const axios = require("axios");
 const arrayToString = require("../../utils/arrayToString");
 
 const configuration = new Configuration({
@@ -6,6 +7,26 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
+
+const generateMealPlan = async (req, res) => {
+  const mealPlan = {
+    days: [],
+  };
+
+  console.log(req.body);
+  const mealIdeas = req.body.ideas;
+  let promises = mealIdeas.map((idea) => generateRecipe(req, idea));
+
+  Promise.all(promises)
+    .then((recipes) => {
+      mealPlan.days = recipes; // Save the recipes to mealPlan.days
+      res.status(200).json(mealPlan); // Send the meal plan back to the client
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: err.toString() }); // Send error to client
+    });
+};
 
 const generateRecipe = async (req, idea) => {
   const {
@@ -42,7 +63,8 @@ const generateRecipe = async (req, idea) => {
         {
           role: "system",
           content:
-            "You are a helpful assistant that creates a recipe for the specified meal name and day of the week. Your responses should strictly adhere to the provided schema, which includes the following fields: day, name, desc, and recipe. The recipe field is an object that includes ingredients and instructions. The ingredients field is an array of objects, each with a name and amount. The instructions field is an array of strings. Please do not include any additional fields in your responses.",
+            //"As a helpful assistant, please create a recipe for a specific meal name and day of the week. Your response should strictly follow the provided schema, which includes the fields: day, name, desc, and recipe. The recipe field should be an object that contains ingredients and instructions. The ingredients field should be an array of objects, each with a name and amount. The instructions field should be an array of strings. Please make sure that your response does not include any extra fields and is in valid, parseable JSON format.",
+            "You are a helpful assistant that generates creative meal ideas. You must generate a meal name for each specified day. The meal name must not be an empty string.",
         },
         {
           role: "user",
@@ -134,5 +156,5 @@ const generateRecipe = async (req, idea) => {
 };
 
 module.exports = {
-  generateRecipe,
+  generateMealPlan,
 };
