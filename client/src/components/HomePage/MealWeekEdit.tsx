@@ -142,6 +142,7 @@ const MealWeekEdit = () => {
         <Grid
           item
           container
+          sx={{ pr: '1rem' }}
           xs={12}
           sm={6} // make the Grid item take up half the space on screens larger than 'sm'
           direction='column'

@@ -143,7 +143,7 @@ const generateRecipe = async (req, idea) => {
         },
       ],
       function_call: "auto",
-      temperature: 1.2,
+      temperature: 1.1,
     });
 
     const data = JSON.parse(
