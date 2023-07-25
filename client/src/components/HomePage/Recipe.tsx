@@ -24,11 +24,19 @@ const Recipe = ({ dish, open, handleClose }: RecipeProps) => {
         </Typography>
         <Typography variant='body1'>{dish.description}</Typography>
 
+        <Box sx={{ mt: '2rem', overflow: 'hidden' }}>
+          <img
+            src={dish.image}
+            style={{ width: '100%', height: 'auto' }}
+            alt={dish.name}
+          />
+        </Box>
+
         <Typography variant='h6' sx={{ fontWeight: 'bold', mt: '2rem' }}>
           Ingredients
         </Typography>
-        {dish.recipe.ingredients.map((ingredient) => (
-          <Typography variant='body1' sx={{ mb: '0.25rem' }}>
+        {dish.recipe.ingredients.map((ingredient, index) => (
+          <Typography key={index} variant='body1' sx={{ mb: '0.25rem' }}>
             {`\u2022  ${ingredient.name} - ${ingredient.amount}`}
           </Typography>
         ))}
@@ -37,7 +45,7 @@ const Recipe = ({ dish, open, handleClose }: RecipeProps) => {
           Instructions
         </Typography>
         {dish.recipe.instructions.map((instruction, index) => (
-          <Typography variant='body1' sx={{ mb: '0.25rem' }}>
+          <Typography key={index} variant='body1' sx={{ mb: '0.25rem' }}>
             {`${index + 1}. ${instruction}`}
           </Typography>
         ))}

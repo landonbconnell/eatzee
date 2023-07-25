@@ -3,6 +3,7 @@ import { Weekdays } from 'models/meals/enums';
 export interface Dish {
   name: string;
   description: string;
+  image: string;
   recipe: {
     ingredients: Ingredients[];
     instructions: string[];

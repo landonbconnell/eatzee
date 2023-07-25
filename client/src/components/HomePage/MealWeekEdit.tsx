@@ -109,6 +109,7 @@ const MealWeekEdit = () => {
         let dish = {
           name: meal.name,
           description: meal.desc,
+          image: meal.image,
           recipe: meal.recipe,
         };
         dispatch(setDish({ weekday, dish }));

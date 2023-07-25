@@ -40,6 +40,10 @@ const MealDayView = ({ day }: MealDayViewProps) => {
           boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.25)',
           margin: '0rem 2.5rem 0 2.5rem',
           backgroundColor: 'primary.light',
+          backgroundImage: `url(${day.dish!.image})`,
+          backgroundSize: 'cover', // Make sure the image covers the entire box
+          backgroundPosition: 'center', // Center the image
+          backgroundRepeat: 'no-repeat', // Do not repeat the image
         }}
       />
       <Box

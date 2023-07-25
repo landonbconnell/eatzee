@@ -1,6 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 const axios = require("axios");
 const arrayToString = require("../../utils/arrayToString");
+const getImage = require("../Google/getImage");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -12,14 +13,26 @@ const generateMealPlan = async (req, res) => {
   const mealPlan = {
     days: [],
   };
+  let imageURLs;
 
-  console.log(req.body);
   const mealIdeas = req.body.ideas;
-  let promises = mealIdeas.map((idea) => generateRecipe(req, idea));
+  let imagePromises = mealIdeas.map((idea) => getImage(idea.name));
+  let recipePromises = mealIdeas.map((idea) => generateRecipe(req, idea));
 
-  Promise.all(promises)
+  Promise.all(imagePromises)
+    .then((images) => {
+      imageURLs = images;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  Promise.all(recipePromises)
     .then((recipes) => {
-      mealPlan.days = recipes; // Save the recipes to mealPlan.days
+      mealPlan.days = recipes;
+      mealPlan.days.forEach((day, index) => {
+        day.image = imageURLs[index]; // Add the image URL to each day
+      });
       res.status(200).json(mealPlan); // Send the meal plan back to the client
     })
     .catch((err) => {
