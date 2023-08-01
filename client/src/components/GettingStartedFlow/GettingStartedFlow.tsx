@@ -10,6 +10,10 @@ import Allergies from './Allergies';
 import CookingSkill from './CookingSkill';
 import CookingEquipment from './CookingEquipment';
 import Review from './Review';
+import { updateUserData } from 'api/user';
+import { useNavigate } from 'react-router-dom';
+import { userSettingsSelector } from 'redux/selectors/userSliceSelectors';
+import { useSelector } from 'react-redux';
 
 const GettingStartedFlowSteps = [
   <GettingStarted />,
@@ -20,7 +24,13 @@ const GettingStartedFlowSteps = [
   <Review />,
 ];
 
-const ArrowButton = ({ onClick, disabled, children }) => (
+interface ArrowButtonProps {
+  onClick: () => void;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
+
+const ArrowButton = ({ onClick, disabled, children }: ArrowButtonProps) => (
   <Button
     size='small'
     onClick={onClick}
@@ -32,6 +42,25 @@ const ArrowButton = ({ onClick, disabled, children }) => (
 );
 
 const GettingStartedFlow = () => {
+  const navigate = useNavigate();
+  const userSettings = useSelector(userSettingsSelector);
+
+  const handleSave = () => {
+    const data = {
+      id: userSettings.id,
+      data: {
+        dietaryRestrictions: userSettings.dietaryRestrictions,
+        allergies: userSettings.allergies,
+        skillLevel: userSettings.skillLevel,
+        cookingEquipment: userSettings.cookingEquipment,
+      },
+    };
+
+    updateUserData(data)
+      .then(() => navigate('/home'))
+      .catch((err) => console.log(err));
+  };
+
   const theme = useTheme();
 
   const GettingStartedBoxStyles = {
@@ -84,10 +113,17 @@ const GettingStartedFlow = () => {
             },
           }}
           nextButton={
-            <ArrowButton onClick={handleNext} disabled={activeStep === 5}>
-              Next
-              <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
-            </ArrowButton>
+            activeStep === 5 ? (
+              <ArrowButton onClick={handleSave}>
+                Save
+                <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
+              </ArrowButton>
+            ) : (
+              <ArrowButton onClick={handleNext}>
+                Next
+                <KeyboardArrowRight sx={{ paddingBottom: '0.25rem' }} />
+              </ArrowButton>
+            )
           }
           backButton={
             <ArrowButton onClick={handleBack} disabled={activeStep === 0}>

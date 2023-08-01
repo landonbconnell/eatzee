@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Stack, Typography, Grid } from '@mui/material';
 import CheckBoxes from './CheckBoxes';
 import SeeMoreButton from './SeeMoreButton';
+import ScrollableBox from 'components/misc/ScrollableBox';
 
 interface CheckBoxStepProps {
   headerText: string;
@@ -30,24 +31,7 @@ const CheckBoxStep = ({
         >
           {headerText}
         </Typography>
-        <Box
-          sx={{
-            overflow: 'auto',
-            marginTop: '1rem',
-            maxHeight: '15rem',
-            '&::-webkit-scrollbar': {
-              width: '0.5rem', // adjust to control the width of the scrollbar
-              color: 'primary.dark', // adjust to control the background color of the scrollbar
-            },
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar
-              borderRadius: '10px',
-            },
-            '&::-webkit-scrollbar-thumb:hover': {
-              backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar when hovered
-            },
-          }}
-        >
+        <ScrollableBox maxHeight='22rem'>
           <Grid container sx={{ marginBottom: '1rem' }}>
             {values.map((value, index) => (
               <CheckBoxes
@@ -59,7 +43,7 @@ const CheckBoxStep = ({
               />
             ))}
           </Grid>
-        </Box>
+        </ScrollableBox>
       </Stack>
     </Box>
   );

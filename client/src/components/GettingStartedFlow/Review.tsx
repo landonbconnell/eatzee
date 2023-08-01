@@ -9,13 +9,10 @@ import {
   setSkillLevel,
 } from 'redux/reducers/userSlice';
 import ReviewSection from './ReviewSection';
-import StyledButton from 'components/misc/StyledButton';
-import { updateUserData } from 'api/user';
-import { useNavigate } from 'react-router-dom';
 import StringSelector from 'components/misc/StringSelector';
+import ScrollableBox from 'components/misc/ScrollableBox';
 
 const Review = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSettings = useSelector(userSettingsSelector);
 
@@ -41,69 +38,52 @@ const Review = () => {
     dispatch(setSkillLevel(skillLabels.indexOf(skillLevel)));
   };
 
-  const handleSave = () => {
-    const data = {
-      id: userSettings.id,
-      data: {
-        dietaryRestrictions: userSettings.dietaryRestrictions,
-        allergies: userSettings.allergies,
-        skillLevel: userSettings.skillLevel,
-        cookingEquipment: userSettings.cookingEquipment,
-      },
-    };
-
-    updateUserData(data)
-      .then(() => navigate('/home'))
-      .catch((err) => console.log(err));
-  };
-
   return (
     <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
       <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
           align='center'
-          sx={{ margin: '0 1rem 1rem 1rem' }}
+          sx={{ ml: '1rem', mr: '1rem' }}
           fontWeight='bold'
         >
           Review
         </Typography>
+        <ScrollableBox maxHeight='22rem'>
+          <Stack
+            direction='column'
+            justifyContent='center'
+            alignItems='flex-start'
+            sx={{ p: '0 1rem 1.5rem 1rem', width: '100%' }}
+          >
+            <Typography variant='h6' align='center' fontWeight='bold'>
+              Cooking Skill
+            </Typography>
+            <StringSelector
+              labels={skillLabels}
+              value={skillLabels[userSettings.skillLevel]}
+              handleChange={handleSkillLevelChange}
+            />
+          </Stack>
 
-        <Stack
-          direction='column'
-          justifyContent='center'
-          alignItems='flex-start'
-          sx={{ p: '0 1rem 1.5rem 1rem', width: '100%' }}
-        >
-          <Typography variant='h6' align='center' fontWeight='bold'>
-            Cooking Skill
-          </Typography>
-          <StringSelector
-            labels={skillLabels}
-            value={skillLabels[userSettings.skillLevel]}
-            handleChange={handleSkillLevelChange}
+          <ReviewSection
+            variable='Cooking Equipment'
+            values={userSettings.cookingEquipment}
+            handleRemove={handleRemoveCookingEquipment}
           />
-        </Stack>
 
-        <ReviewSection
-          variable='Cooking Equipment'
-          values={userSettings.cookingEquipment}
-          handleRemove={handleRemoveCookingEquipment}
-        />
+          <ReviewSection
+            variable='Dietary Restrictions'
+            values={userSettings.dietaryRestrictions}
+            handleRemove={handleRemoveDietaryRestriction}
+          />
 
-        <ReviewSection
-          variable='Dietary Restrictions'
-          values={userSettings.dietaryRestrictions}
-          handleRemove={handleRemoveDietaryRestriction}
-        />
-
-        <ReviewSection
-          variable='Allergies'
-          values={userSettings.allergies}
-          handleRemove={handleRemoveAllergy}
-        />
-
-        <StyledButton label='save' width='10rem' onClick={handleSave} />
+          <ReviewSection
+            variable='Allergies'
+            values={userSettings.allergies}
+            handleRemove={handleRemoveAllergy}
+          />
+        </ScrollableBox>
       </Stack>
     </Box>
   );
