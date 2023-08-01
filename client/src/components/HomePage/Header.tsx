@@ -41,7 +41,7 @@ const Header = () => {
       direction={isMobile ? 'row' : 'column'}
       justifyContent={isMobile ? 'space-around' : 'center'}
       alignItems='center'
-      sx={{ marginBottom: '2rem' }}
+      sx={{ p: isMobile ? '1rem 0 1rem 0' : '0 0 2rem 0' }}
     >
       <Typography variant='h4' sx={{ color: 'primary.contrastText' }}>
         Eatzier

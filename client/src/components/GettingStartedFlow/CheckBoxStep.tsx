@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Stack, Typography, Grid } from '@mui/material';
 import CheckBoxes from './CheckBoxes';
-import SeeMoreButton from './SeeMoreButton';
 import ScrollableBox from 'components/misc/ScrollableBox';
 
 interface CheckBoxStepProps {

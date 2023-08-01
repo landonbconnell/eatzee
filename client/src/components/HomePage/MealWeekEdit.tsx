@@ -35,6 +35,7 @@ import {
   timeNumToString,
 } from 'utils/variableNumToString';
 import StyledLoadingButton from 'components/misc/StyledLoadingButton';
+import ScrollableBox from 'components/misc/ScrollableBox';
 
 const MealWeekEdit = () => {
   const id = useSelector(idSelector);
@@ -66,11 +67,14 @@ const MealWeekEdit = () => {
     marginRight: '2rem',
     mt: 2,
     mb: 2,
-    [theme.breakpoints.down(840)]: {
-      minWidth: '16rem',
-      maxWidth: '30rem',
-      padding: '1rem',
-      borderRadius: '1.5rem',
+    [theme.breakpoints.down(650)]: {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      overflowY: 'auto',
+      boxSizing: 'border-box',
+      borderRadius: 0,
+      m: '0',
+      p: '1rem',
     },
   };
 
@@ -151,8 +155,8 @@ const MealWeekEdit = () => {
           alignItems='center'
         >
           <NumberSelector
-            header='Portions'
-            width='15rem'
+            header='People'
+            width='14rem'
             labels={labels.portions}
             value={days[0].portion_size}
             handleChange={(newPortionSize) =>
@@ -209,32 +213,10 @@ const MealWeekEdit = () => {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Typography
-            variant='h6'
-            align='center'
-            sx={{ fontWeight: 'bold', marginBottom: '1rem' }}
-          >
+          <Typography variant='h6' align='center' sx={{ fontWeight: 'bold' }}>
             World Cuisines
           </Typography>
-          <Box
-            sx={{
-              maxHeight: '24rem',
-              overflowY: 'scroll',
-              width: '100%',
-              marginBottom: '1rem',
-              '&::-webkit-scrollbar': {
-                width: '0.5rem', // adjust to control the width of the scrollbar
-                color: 'primary.dark', // adjust to control the background color of the scrollbar
-              },
-              '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar
-                borderRadius: '10px',
-              },
-              '&::-webkit-scrollbar-thumb:hover': {
-                backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar when hovered
-              },
-            }}
-          >
+          <ScrollableBox maxHeight='15rem'>
             <Grid
               item
               container
@@ -262,7 +244,7 @@ const MealWeekEdit = () => {
                 </Grid>
               ))}
             </Grid>
-          </Box>
+          </ScrollableBox>
         </Grid>
       </Grid>
       <Box

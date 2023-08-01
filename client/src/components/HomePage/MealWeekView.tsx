@@ -8,10 +8,10 @@ import { daysSelector } from 'redux/selectors/daysSelector';
 import Header from './Header';
 
 const MealWeekView = () => {
-  const isMobile = useMediaQuery('(max-width: 829px)');
-  const isSmall = useMediaQuery('(min-width: 830px) and (max-width: 1249px)');
-  const isMedium = useMediaQuery('(min-width: 1250px) and (max-width: 1629px)');
-  const isLarge = useMediaQuery('(min-width: 1630px)');
+  const isMobile = useMediaQuery('(max-width: 599px)');
+  const isSmall = useMediaQuery('(min-width: 600px) and (max-width: 949px)');
+  const isMedium = useMediaQuery('(min-width: 950px) and (max-width: 1249px)');
+  const isLarge = useMediaQuery('(min-width: 1250px)');
 
   let daysPerRow;
 
@@ -50,11 +50,14 @@ const MealWeekView = () => {
     marginRight: '2rem',
     mt: 2,
     mb: 2,
-    [theme.breakpoints.down(840)]: {
-      minWidth: '16rem',
-      maxWidth: '30rem',
-      padding: '1rem',
-      borderRadius: '1.5rem',
+    [theme.breakpoints.down(650)]: {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      overflowY: 'auto',
+      boxSizing: 'border-box',
+      borderRadius: 0,
+      m: '0',
+      p: '1rem 0 0 0',
     },
   };
 

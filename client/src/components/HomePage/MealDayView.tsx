@@ -24,7 +24,12 @@ const MealDayView = ({ day }: MealDayViewProps) => {
   };
 
   return (
-    <Stack direction='column' alignItems='center' justifyContent='center'>
+    <Stack
+      direction='column'
+      alignItems='center'
+      justifyContent='center'
+      sx={{ m: '0rem 1.75rem 1.5rem 1.75rem' }}
+    >
       <Typography
         variant='h6'
         sx={{ color: 'primary.contrastText', marginTop: '1rem' }}
@@ -38,7 +43,6 @@ const MealDayView = ({ day }: MealDayViewProps) => {
           borderTopLeftRadius: '2.5rem',
           borderTopRightRadius: '2.5rem',
           boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.25)',
-          margin: '0rem 2.5rem 0 2.5rem',
           backgroundColor: 'primary.light',
           backgroundImage: `url(${day.dish!.image})`,
           backgroundSize: 'cover', // Make sure the image covers the entire box
@@ -53,7 +57,7 @@ const MealDayView = ({ day }: MealDayViewProps) => {
           borderBottomLeftRadius: '2.5rem',
           borderBottomRightRadius: '2.5rem',
           boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.25)',
-          margin: '0rem 2.5rem 2.5rem 2.5rem',
+
           backgroundColor: 'primary.light',
         }}
       >

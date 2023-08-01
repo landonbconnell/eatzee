@@ -18,7 +18,7 @@ const Recipe = ({ dish, open, handleClose }: RecipeProps) => {
       >
         <CloseIcon />
       </IconButton>
-      <Box sx={{ m: 3, minWidth: 300, maxHeight: '75rem' }}>
+      <Box sx={{ m: 2.5, maxHeight: '75rem' }}>
         <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
           {dish.name}
         </Typography>
