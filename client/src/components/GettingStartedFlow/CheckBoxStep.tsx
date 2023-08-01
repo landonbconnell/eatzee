@@ -21,7 +21,7 @@ const CheckBoxStep = ({
   handleChange,
 }: CheckBoxStepProps) => {
   return (
-    <Box sx={{ overflow: 'auto', maxHeight: '35rem', marginBottom: '1rem' }}>
+    <Box sx={{ marginBottom: '1rem' }}>
       <Stack direction='column' justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
@@ -30,24 +30,36 @@ const CheckBoxStep = ({
         >
           {headerText}
         </Typography>
-        <Grid container sx={{ margin: '1rem 0 1rem 0' }}>
-          {values.slice(0, visible).map((value, index) => (
-            <CheckBoxes
-              key={index}
-              name={value}
-              index={index}
-              onChange={handleChange}
-              checked={selectedValues.includes(value)}
-            />
-          ))}
-        </Grid>
-        {visible < values.length && (
-          <SeeMoreButton
-            visible={visible}
-            setVisible={setVisible}
-            revealNum={6}
-          />
-        )}
+        <Box
+          sx={{
+            overflow: 'auto',
+            marginTop: '1rem',
+            maxHeight: '15rem',
+            '&::-webkit-scrollbar': {
+              width: '0.5rem', // adjust to control the width of the scrollbar
+              color: 'primary.dark', // adjust to control the background color of the scrollbar
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar when hovered
+            },
+          }}
+        >
+          <Grid container sx={{ marginBottom: '1rem' }}>
+            {values.map((value, index) => (
+              <CheckBoxes
+                key={index}
+                name={value}
+                index={index}
+                onChange={handleChange}
+                checked={selectedValues.includes(value)}
+              />
+            ))}
+          </Grid>
+        </Box>
       </Stack>
     </Box>
   );

@@ -218,10 +218,21 @@ const MealWeekEdit = () => {
           </Typography>
           <Box
             sx={{
-              maxHeight: '24rem', // adjust to control the maximum height of the scrollable area
-              overflowY: 'auto', // makes the Box scrollable
+              maxHeight: '24rem',
+              overflowY: 'scroll',
               width: '100%',
               marginBottom: '1rem',
+              '&::-webkit-scrollbar': {
+                width: '0.5rem', // adjust to control the width of the scrollbar
+                color: 'primary.dark', // adjust to control the background color of the scrollbar
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar
+                borderRadius: '10px',
+              },
+              '&::-webkit-scrollbar-thumb:hover': {
+                backgroundColor: 'primary.dark', // adjust to control the color of the scrollbar when hovered
+              },
             }}
           >
             <Grid

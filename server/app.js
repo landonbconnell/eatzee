@@ -1,5 +1,6 @@
 // Require the express module
 const express = require("express");
+require("dotenv").config();
 const dbConnect = require("./config/db");
 const cors = require("cors");
 const apiRoutes = require("./routes/apiRoutes");
