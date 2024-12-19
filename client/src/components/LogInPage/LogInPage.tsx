@@ -7,12 +7,7 @@ import CenterBox from 'components/misc/CenterBox';
 const LogInPage = () => {
   return (
     <CenterBox>
-      <Stack direction='row'>
-        <Hidden lgDown>
-          <Carousel />
-        </Hidden>
-        <LogIn />
-      </Stack>
+      <LogIn />
     </CenterBox>
   );
 };

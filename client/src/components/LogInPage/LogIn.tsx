@@ -28,8 +28,7 @@ const LogIn = () => {
     maxHeight: '40rem',
     padding: '5rem 5rem 2rem 5rem',
     overflow: 'hidden',
-    borderTopRightRadius: '2.5rem',
-    borderBottomRightRadius: '2.5rem',
+    borderRadius: '2.5rem',
     boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
     backgroundColor: 'primary.light',
     [theme.breakpoints.down('lg')]: {
@@ -116,9 +115,6 @@ const LogIn = () => {
           error={passwordError}
         />
 
-        <Typography variant='body2' sx={{ color: 'secondary.dark' }}>
-          Forgot Username/Password?
-        </Typography>
         <Button
           variant='contained'
           onClick={handleLogin}

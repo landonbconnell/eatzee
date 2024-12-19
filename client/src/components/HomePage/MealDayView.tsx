@@ -10,15 +10,12 @@ interface MealDayViewProps {
 }
 
 const MealDayView = ({ day }: MealDayViewProps) => {
-  // Define state for dialog open status
   const [open, setOpen] = useState(false);
 
-  // Function to handle opening of dialog
   const handleOpen = () => {
     setOpen(true);
   };
 
-  // Function to handle closing of dialog
   const handleClose = () => {
     setOpen(false);
   };
@@ -37,6 +34,7 @@ const MealDayView = ({ day }: MealDayViewProps) => {
         {weekdayToString(day.weekday)}
       </Typography>
       <Box
+        onClick={handleOpen}
         sx={{
           width: '14rem',
           height: '10rem',
@@ -72,13 +70,13 @@ const MealDayView = ({ day }: MealDayViewProps) => {
           >
             {day.dish!.name}
           </Typography>
-          <Button
+          {/* <Button
             variant='text'
             sx={{ color: 'secondary.dark', textTransform: 'none' }}
             onClick={handleOpen} // Add onClick handler
           >
             See Recipe
-          </Button>
+          </Button> */}
           <Recipe dish={day.dish!} open={open} handleClose={handleClose} />
         </Stack>
       </Box>
